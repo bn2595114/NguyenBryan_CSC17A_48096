@@ -6,12 +6,14 @@
  * Created on August 31, 2016, 11:33 AM
  */
 
-// Write a program converting Celsius to Farenheit f = (9/5) * c + 32
+
 
 #include <cstdlib>
 #include <iostream>
 #include <iomanip>
 #include <ctime>
+#include <fstream>
+#include <string>
 using namespace std;
 
 const float YEN_PER_DOLLAR = 98.83;
@@ -34,20 +36,32 @@ void outRun(string []);
 void popul(int, float, int);
 //Program 7
 float celsius(float);
+//Program 8
+void output(int, int, int);
+//Program 9
+void sort(string [], int);
+string getVal();
+//Problem 10
+void compare(int [], int, int);
+void fill(int a[], int size);
+int bSearch(const string [], int, string);
 
 int main(int argc, char** argv) {
     
+    srand(static_cast<unsigned int>(time(0)));
+    
     int num;
     cout << "Select the number of the program" << endl;
-    cout << "1) 3.12 Celsius to Fahrenheit" << endl;
-    cout << "2) 3.13 Currency" << endl;
-    cout << "3) 4.10 Days in a month" << endl;
-    cout << "4) 4.11 Math Tutor" << endl;
-    cout << "5) 4.16 Running the Race" << endl;
-    cout << "6) 5.11 Population" << endl;
-    cout << "7) 6.7 Celsius Temperature Table" << endl;
-    cout << "8) 7.6 Rain or Shine" << endl;
-    cout << "9) 8.7" << endl;
+    cout << "1) 3.12 Celsius to Fahrenheit" << endl; // convert c to F
+    cout << "2) 3.13 Currency" << endl; // Convert to yen and euros
+    cout << "3) 4.10 Days in a month" << endl; // Calculate leap year
+    cout << "4) 4.11 Math Tutor" << endl; // Math addition
+    cout << "5) 4.16 Running the Race" << endl; // Give places of runners
+    cout << "6) 5.11 Population" << endl; // Estimate population size
+    cout << "7) 6.7 Celsius Temperature Table" << endl; // Output given fahren.
+    cout << "8) 7.6 Rain or Shine" << endl; // read from file and output R,S,C
+    cout << "9) 8.7 Binary String Search" << endl; // binary search
+    cout << "10) 7.4 Larger Than n" << endl; // output numbers larger than n
     cin >> num;
     
     
@@ -104,7 +118,6 @@ int main(int argc, char** argv) {
         }  
         case 4:
         {
-            srand(static_cast<unsigned int>(time(0)));
             int user, add1, add2, solve;
             add1 = rand()%1001;
             add2 = rand()%1001;
@@ -150,6 +163,112 @@ int main(int argc, char** argv) {
             cout << "Enter a degree in Fahrenheit you wish to convert" << endl;
             cin >> f;
             celsius(f);
+        }
+        case 8:
+        {
+            const int N = 30; //columns
+            const int R = 3;
+            ifstream infile;
+            infile.open("RainOrShine.txt");
+            char a2D [R][N];
+            int rJune = 0, cJune = 0, sJune = 0;
+            int rJuly = 0, cJuly = 0, sJuly = 0;
+            int rAug = 0, cAug = 0, sAug = 0;
+            
+            for (int i = 0; i < R; i++)
+                for (int j = 0; j < N; j++)
+                    infile >> a2D[i][j];
+            
+            for (int i = 0; i < R; i++)
+            {
+                if(i == 0)
+                {
+                    cout << "June: ";
+                }
+                if(i == 1)
+                {
+                    cout << "July: ";
+                }
+                if(i == 2)
+                {
+                    cout << "August: ";
+                }
+                for (int j = 0; j < N; j++)
+                {
+                    cout << a2D[i][j];
+                        
+                }
+                cout << endl;
+            }
+            for(int j = 0; j < N; j++)
+            {
+                if(a2D[0][j] == 'R')
+                        rJune++;
+                    if(a2D[0][j] == 'C')
+                        cJune++;
+                    if(a2D[0][j] == 'S')
+                        sJune++;
+                    if(a2D[1][j] == 'R')
+                        rJuly++;
+                    if(a2D[1][j] == 'C')
+                        cJuly++;
+                    if(a2D[1][j] == 'S')
+                        sJuly++;
+                    if(a2D[2][j] == 'R')
+                        rAug++;
+                    if(a2D[2][j] == 'C')
+                        cAug++;
+                    if(a2D[2][j] == 'S')
+                        sAug++;
+            }
+            cout << "June:" << endl;
+            output(rJune, cJune,sJune);
+            cout << "July:" << endl;
+            output(rJuly,cJuly,sJuly);
+            cout << "August:" << endl;
+            output(rAug, cAug, sAug);
+            
+            if ((rJune > rJuly) && (rJune > rAug))
+                cout << "June has most rainy days";
+            if ((rAug > rJune) && (rAug > rJuly))
+                cout << "August has most rainy days";
+            if ((rJuly > rJune) && (rJuly > rAug))
+                cout << "July has most rainy days";
+            break;
+        }
+        case 9:
+        {
+            
+            string name;
+            const int NUM_NAMES = 20;
+            string names[NUM_NAMES] = {"Collins, Bill", "Smith, Bart",
+                                       "Allen, Jim", "Griffin,Jim", "Stamey Marty", 
+                                       "Rose, Geri", "Taylor, Terri", "Johnson, Jill", 
+                                       "Allison, Jeff", "Looney, Joe", "Wolfe, Bill", 
+                                       "James, Jean", "Weaver, Jim", "Pore, Bob", 
+                                       "Rutherford, Greg", "Javens Renee",
+                                       "Harrison, Rose", "Setzer, Cathy", 
+                                       "Pike, Gordon", "Holland, Beth"};
+            sort(names, NUM_NAMES);
+            cout << "Names in alphabetical order in last name: " << endl;
+            for(int i = 0; i < NUM_NAMES; i++)
+                cout << names[i] << endl;
+            name = getVal();
+            cout << "Your person is in index: " << bSearch(names, NUM_NAMES, name);
+            
+        }
+        case 10: 
+        {
+            int size, ary [size], n;
+            cout << "Enter the size of the array: ";
+            cin >> size;
+            cout << "The array will be filled with random numbers" << endl;
+            cout << "What number would you like to compare? " << endl;
+            cin >> n;
+            fill(ary, size);
+            cout << "Numbers greater than your number will now be displayed: ";
+            cout << endl;
+            compare(ary, size, n);
         }
     }
     return 0;
@@ -232,6 +351,22 @@ void mrkSort(int a[],string b[], int size)
                 b[j] = temp;
             }
         }
+    
+}
+
+void sort(string name[], int size)
+{
+    string temp;
+    for(int i = 0; i < size; i++)
+        for (int j = i+ 1; j < size; j++)
+        {
+            if(name[i] > name[j])
+            {
+                temp = name[i];
+                name[i] = name[j];
+                name[j] = temp;
+            }
+        }
 }
 
 void outRun(string name[])
@@ -268,4 +403,60 @@ float celsius(float f)
     cout << endl;
     cout << f << " degrees F is " << convert << " degrees C" << endl;
     return convert;
+}
+
+void output(int a, int b, int c)
+{
+    cout << "Rainy Days: " << a << endl;
+    cout << "Cloudy Days: " << b << endl;
+    cout << "Sunny Days : " << c << endl << endl;
+   
+}
+
+int bSearch(const string array[], int num, string name)
+{
+    int first = 0, last = num - 1, middle, position = -1;
+    bool found = false;
+    
+    while(!found && first <= last)
+    {
+        middle = (first + last) / 2;
+        if (array[middle] == name)
+        {
+            found = true;
+            position = middle;
+        }
+        else if(array[middle] > name)
+            last = middle - 1;
+        else 
+            first = middle + 1;
+    }
+    return position;
+}
+
+string getVal()
+{
+    string input;
+    cout << "Enter last name, first name: ";
+    cin.ignore();
+    getline(cin, input);
+    return input;
+}
+
+void compare(int a[], int size, int n)
+{
+    
+    for(int i = 0; i < size; i++)
+    {
+        if (a[i] > n)
+            cout << a[i] << "  ";
+        if(i % 10 == 9)
+            cout << endl;
+    }
+}
+
+void fill(int a[], int size)
+{
+    for(int i = 0; i < size; i++)
+        a[i] = rand()%100;
 }
