@@ -255,7 +255,7 @@ int main(int argc, char** argv) {
                 cout << names[i] << endl;
             name = getVal();
             cout << "Your person is in index: " << bSearch(names, NUM_NAMES, name);
-            
+            break;
         }
         case 10: 
         {
