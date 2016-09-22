@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=C++ Review
+PROJECTNAME=Truth Table
 
 # Active Configuration
 DEFAULTCONF=Debug

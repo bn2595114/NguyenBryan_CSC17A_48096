@@ -156,6 +156,7 @@ int main(int argc, char** argv) {
             cout << "Enter the number of days the will multiply(1+): ";
             cin >> days;
             popul(start, avgIncr, days);
+            break;
         }
         case 7:
         {
@@ -163,6 +164,7 @@ int main(int argc, char** argv) {
             cout << "Enter a degree in Fahrenheit you wish to convert" << endl;
             cin >> f;
             celsius(f);
+            break;
         }
         case 8:
         {
@@ -269,6 +271,7 @@ int main(int argc, char** argv) {
             cout << "Numbers greater than your number will now be displayed: ";
             cout << endl;
             compare(ary, size, n);
+            break;
         }
     }
     return 0;
