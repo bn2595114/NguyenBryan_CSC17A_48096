@@ -17,7 +17,7 @@ using namespace std;
 
  
 int *mode(int *, int, float&, float&);
-
+int *mode(int *ary, int size);
 float mean(int *, int);
 void sort(int *, int);
 void prntAry(int *, int);
@@ -49,6 +49,7 @@ int main(int argc, char** argv) {
             case 1: 
             {
     const int SIZE = 8;
+    int *a;
     int *array = new int[SIZE];
     array[0] = 1;
     array[1] = 2;
@@ -62,10 +63,25 @@ int main(int argc, char** argv) {
     sort(array, SIZE);
     prntAry(array, SIZE);
     
-    cout << "Mean is: " << mean(array, SIZE) << endl;
-    cout << "Median is: " << med(array, SIZE);
+    a = mode(array, SIZE);
     
+    cout << "Mean is: " << mean(array, SIZE) << endl;
+    cout << "Median is: " << med(array, SIZE) << endl;
+    
+    for(int i = 0; i < 4; i++)
+    {
+        if(i == 0)
+            cout << "Number of Modes: " << a[i] << endl;
+        if(i == 1)
+            cout << "Frequency of Modes: " << a[i] << endl;
+        if(i == 2)
+            cout << "Modes: ";
+        if(i > 1)
+            cout << a[i] << " ";
+    }
+    delete[] a;
     delete[] array;
+    break;
             }
             
             case 2:
@@ -329,4 +345,70 @@ int *shift(int ary[], int size)
     for(int i = 1; i < size + 1; i++)
         arry[i] = ary[i - 1];
     return arry;
+}
+
+int *mode(int *ary, int size)
+{
+    int count1 = 0, count2 = 0, temp = 0;
+    int *freq = new int[size];
+    int *top = new int[size];
+    int *num = new int[size];
+    int *mode = new int[4];
+    sort(ary, size);
+    for(int i = 0; i < size; i++)
+        freq[i] = 0;
+    for(int i = 0; i < size; i++)
+    {
+        if(i >= 1)
+        {
+            if(ary[i] == ary[i-1])
+                count1++;
+            if(ary[i] != ary[i-1])
+            {
+                if(count1 > count2 && count1 > 1)
+                {
+                count2 = count1;
+                freq[i] = count2;
+                
+                }
+                if(count1 == count2 && count1 > 1)
+                    freq[i] = count2;
+                count1 = 0;
+            }
+        }
+        
+    }
+    
+    for(int i = 0; i < size; i++)
+    {
+        if(freq[i] > temp)
+            temp = freq[i];
+    }
+    
+    
+    for(int i = 0; i < size; i++)
+    {
+        if(freq[i] == temp)
+            num[i] = ary[i-1];
+
+    }
+    
+    sort(freq, size);
+    for(int i = 1; i <= size; i++)
+    {
+        if(freq[i] > freq[i-1])
+            top[i] = freq[i];
+    }
+    count1 = 0;
+    sort(top, size);
+    for(int i = 0; i < size; i++)
+    {
+        if(freq[i] == top[size-1])
+            count1++;
+    }
+    mode[0] = count1;
+    mode[1] = temp + 1;
+    mode[2] = num[3];
+    mode[3] = num[6];
+    return mode;
 }
