@@ -16,7 +16,6 @@
 using namespace std;
 
  
-int *mode(int *, int, float&, float&);
 int *mode(int *ary, int size);
 float mean(int *, int);
 void sort(int *, int);
@@ -30,6 +29,7 @@ string *allName(int);
 int *reverse(int [], int);
 int *crtAry(int [], int);
 int *shift(int [], int);
+void desSort(int *a, int size);
 int main(int argc, char** argv) {
     int num;
     cout << "Choose the number" << endl;
@@ -42,6 +42,8 @@ int main(int argc, char** argv) {
     cout << "7) 9.10 Reverse Array" << endl;
     cout << "8) 9.11 Array Expander" << endl;
     cout << "9) 9.12 Element Shifter" << endl;
+    cout << "10) 9.6 Case Study Modification #1" << endl;
+    cout << "11) 9.7 Case Study Modification #2" << endl;
     cin >> num;
     
     switch (num)
@@ -217,6 +219,44 @@ int main(int argc, char** argv) {
                 cout << shift1[i] << " ";
             delete[] shift1;
             break;
+        }
+        case 10:
+        {
+            int size, *donate;
+            cout << "Input Size of Array: ";
+            cin >> size;
+            donate = new int[size];
+            for(int i = 0; i < size; i++)
+            {
+                cout << "Enter Donation " << i + 1 << ": ";
+                cin >> donate[i];
+            }
+            cout << "Sorted: ";
+            sort(donate, size);
+            for(int i = 0; i < size; i++)
+                cout << donate[i] << "  ";
+            
+            
+            delete []donate;
+        }
+        case 11: 
+        {
+            int size, *donate;
+            cout << "Input Size of Array: ";
+            cin >> size;
+            donate = new int[size];
+            for(int i = 0; i < size; i++)
+            {
+                cout << "Enter Donation " << i + 1 << ": ";
+                cin >> donate[i];
+            }
+            cout << "Descending Sort: ";
+            desSort(donate, size);
+            for(int i = 0; i < size; i++)
+                cout << donate[i] << "  ";
+            
+            
+            delete []donate;
         }
     }
     return 0;
@@ -411,4 +451,18 @@ int *mode(int *ary, int size)
     mode[2] = num[3];
     mode[3] = num[6];
     return mode;
+}
+
+void desSort(int *a, int size)
+{
+    for(int i = 0; i < size; i++)
+        for(int j = i + 1; j < size; j++)
+        {
+            if(a[i] < a[j])
+            {
+                a[i] = a[i]^a[j];
+                a[j] = a[i]^a[j];
+                a[i] = a[i]^a[j];
+            }
+        }
 }
