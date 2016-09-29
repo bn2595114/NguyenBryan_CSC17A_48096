@@ -260,12 +260,7 @@ int main(int argc, char** argv) {
         }
     }
     return 0;
-}
-
-int *mode(int *a, int size, float& avg, float& med)
-{
-    
-}  
+} 
 
 float mean(int *a, int size)
 {
