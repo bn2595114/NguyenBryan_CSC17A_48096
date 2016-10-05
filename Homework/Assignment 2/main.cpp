@@ -10,17 +10,23 @@
 using namespace std;
 
 const int SIZE = 30;
+const int MONTHS = 12;
 
 #include "MovieData.h"
 #include "MovieProfit.h"
 #include "ComData.h"
+#include "WeatherStatistics.h"
 
 void getData(MovieData&);
 void getData(MovieProfit&);
 void getData(ComData&);
+void getData(Weather [], int);
 void display(MovieData);
 void display(MovieProfit);
 void display(ComData);
+void display(Weather [], int);
+
+void sort(Weather [], int);
 
 int main(int argc, char** argv) {
 
@@ -29,6 +35,7 @@ int main(int argc, char** argv) {
     cout << "1) 11.1 Movie Data" << endl;
     cout << "2) 11.2 Movie Profit" << endl;
     cout << "3) 11.3 Corporate Sales Data" << endl;
+    cout << "4) 11.4 Weather Statistics" << endl;
     cin >> num;
     
     switch(num)
@@ -39,38 +46,42 @@ int main(int argc, char** argv) {
             MovieData movie1, movie2;
             
             cin.ignore();
-            getData(movie1);
-            display(movie1);
+            getData(movie1); // get data
+            display(movie1); // display data
             
             cin.ignore();
-            getData(movie2);
-            display(movie2);
+            getData(movie2); // get data
+            display(movie2); // display data
         }
         case 2:
         {
             MovieProfit movie1, movie2;
             
             cin.ignore();
-            getData(movie1);
-            display(movie1);
+            getData(movie1); // get data
+            display(movie1); // display data
             
             cin.ignore();
-            getData(movie2);
-            display(movie2);
+            getData(movie2); // get data
+            display(movie2); // display data
         }
         case 3:
         {
             ComData data1, data2, data3, data4;
             cout << "Regarding the first company: " << endl;
-            getData(data1);
+            getData(data1); // gets and displays data
             cout << "Regarding the second company: " << endl;
-            getData(data2);
+            getData(data2); //gets and displays data
             cout << "Regarding the third company: " << endl;
-            getData(data3);
+            getData(data3); // gets and displays data
             cout << "Regarding the fourth company: " << endl;
-            getData(data4);
+            getData(data4); // gets and displays data
         }
-        
+        case 4:
+        {
+            Weather stat[MONTHS];
+            getData(stat, MONTHS); // gets data and displays
+        }
         
         
     }
@@ -157,6 +168,32 @@ void getData(ComData &a)
     display(a);
 }
 
+void getData(Weather a[], int size)
+{
+    
+    for(int i = 0; i < size; i++)
+    {
+        cout << "Enter Total Rainfall for Month " << i + 1 << ": ";
+        cin >> a[i].tRain;
+        cout << "Enter Highest Temperature for Month " << i + 1 << ": ";
+        cin >> a[i].hTemp;
+        while(a[i].hTemp > 139)
+        {
+            cout << "Temperature too high. Enter another temp: ";
+            cin >> a[i].hTemp;
+        }
+        cout << "Enter Lowest Temperature for Month " << i + 1 << ": ";
+        cin >> a[i].lTemp;
+        while(a[i].lTemp < -99)
+        {
+            cout << "Temperature too low. Enter another temp: ";
+            cin >> a[i].lTemp;
+        }
+        a[i].aTemp = (a[i].hTemp + a[i].lTemp) / 2;
+    }
+    display(a, size);
+}
+
 void display(MovieData a)
 {
     cout << endl;
@@ -187,4 +224,57 @@ void display(ComData a)
     cout << "Fourth Quarter Sales: " << a.q4Sale << endl;
     cout << "Total Annual Sales: " << a.tSale << endl;
     cout << "Average Quarterly Sales: " << a.avgSale << endl << endl;
+}
+
+void display(Weather a[], int size)
+{
+    float avgTemp = 0, avgRain = 0, totRain = 0;
+    for(int i = 0; i < size; i++)
+    {
+        cout << "Month " << i + 1 << " Statistics: " << endl;
+        cout << "Total Rainfall: " << a[i].tRain << endl;
+        cout << "Highest Temperature: " << a[i].hTemp << endl;
+        cout << "Lowest Temperature: " << a[i].lTemp << endl;
+        cout << "Average Temperature: " << a[i].aTemp << endl;
+    }
+    cout << endl;
+    sort(a, size);
+    
+    for(int i = 0; i < size; i++)
+        avgRain += a[i].tRain;
+    avgRain /= size;
+    for(int i = 0; i < size; i++)
+        totRain += a[i].tRain;
+    
+    for(int i = 0; i < size; i++)
+        avgTemp += a[i].aTemp;
+    avgTemp /= size;
+    cout << "Average rainfall of all months is: " << avgRain << endl;
+    cout << "Total rainfall of all months is: " << totRain << endl;
+    cout << "Highest Temperature is: " << a[size-1].hTemp << endl;
+    cout << "Lowest Temperature is: " << a[size-1].lTemp << endl;
+    cout << "Average of the average temperatures: " << avgTemp << endl;
+   
+}
+
+void sort(Weather a[], int size)
+{
+    float temp;
+    for(int i = 0; i < size; i++)
+        for(int j = i+1; j < size; j++)
+        {
+            if(a[i].hTemp > a[j].hTemp)
+            {
+                temp = a[i].hTemp;
+                a[i].hTemp = a[j].hTemp;
+                a[j].hTemp = temp;
+            }
+            if(a[i].lTemp < a[j].lTemp)
+            {
+                temp = a[i].lTemp;
+                a[i].lTemp = a[j].lTemp;
+                a[j].lTemp = temp;
+            }
+                
+        }
 }
