@@ -36,6 +36,7 @@ int main(int argc, char** argv) {
     cout << "2) 11.2 Movie Profit" << endl;
     cout << "3) 11.3 Corporate Sales Data" << endl;
     cout << "4) 11.4 Weather Statistics" << endl;
+    cout << "5) 11.5 Weather Statistics Modification" << endl;
     cin >> num;
     
     switch(num)
@@ -81,6 +82,11 @@ int main(int argc, char** argv) {
         {
             Weather stat[MONTHS];
             getData(stat, MONTHS); // gets data and displays
+        }
+        case 5: 
+        {
+            Weather stat[MONTHS];
+            getData(stat, MONTHS);
         }
         
         
@@ -170,8 +176,11 @@ void getData(ComData &a)
 
 void getData(Weather a[], int size)
 {
-    
-    for(int i = 0; i < size; i++)
+    enum Months {
+        JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST,
+        SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+    };
+    for(int i = JANUARY; i <= DECEMBER; i++)
     {
         cout << "Enter Total Rainfall for Month " << i + 1 << ": ";
         cin >> a[i].tRain;
@@ -228,8 +237,13 @@ void display(ComData a)
 
 void display(Weather a[], int size)
 {
+ 
+    enum Months {
+        JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST,
+        SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+    };
     float avgTemp = 0, avgRain = 0, totRain = 0;
-    for(int i = 0; i < size; i++)
+    for(int i = JANUARY; i <= DECEMBER; i++)
     {
         cout << "Month " << i + 1 << " Statistics: " << endl;
         cout << "Total Rainfall: " << a[i].tRain << endl;
@@ -240,13 +254,13 @@ void display(Weather a[], int size)
     cout << endl;
     sort(a, size);
     
-    for(int i = 0; i < size; i++)
+    for(int i = JANUARY; i <= DECEMBER; i++)
         avgRain += a[i].tRain;
     avgRain /= size;
-    for(int i = 0; i < size; i++)
+    for(int i = JANUARY; i <= DECEMBER; i++)
         totRain += a[i].tRain;
     
-    for(int i = 0; i < size; i++)
+    for(int i = JANUARY; i <= DECEMBER; i++)
         avgTemp += a[i].aTemp;
     avgTemp /= size;
     cout << "Average rainfall of all months is: " << avgRain << endl;
@@ -259,9 +273,13 @@ void display(Weather a[], int size)
 
 void sort(Weather a[], int size)
 {
+    enum Months {
+        JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST,
+        SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+    };
     float temp;
-    for(int i = 0; i < size; i++)
-        for(int j = i+1; j < size; j++)
+    for(int i = JANUARY; i <= DECEMBER; i++)
+        for(int j = i+FEBRUARY; j <= DECEMBER; j++)
         {
             if(a[i].hTemp > a[j].hTemp)
             {
