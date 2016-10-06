@@ -9,26 +9,30 @@
 #include <iostream>
 using namespace std;
 
-const int SIZE = 30;
+const int SIZE = 100;
 const int MONTHS = 12;
 const int PLAYERS = 12;
+const int ACCOUNT = 10;
 
 #include "MovieData.h"
 #include "MovieProfit.h"
 #include "ComData.h"
 #include "WeatherStatistics.h"
 #include "Soccer.h"
+#include "Accounts.h"
 
 void getData(MovieData&);
 void getData(MovieProfit&);
 void getData(ComData&);
 void getData(Weather [], int);
 void getData(Score [], int);
+void getData(Account [], int);
 void display(MovieData);
 void display(MovieProfit);
 void display(ComData);
 void display(Weather [], int);
 void display(Score [], int);
+void display(Account [], int, int&);
 
 void sort(Weather [], int);
 
@@ -42,6 +46,7 @@ int main(int argc, char** argv) {
     cout << "4) 11.4 Weather Statistics" << endl;
     cout << "5) 11.5 Weather Statistics Modification" << endl;
     cout << "6) 11.6 Soccer Scores" << endl;
+    cout << "7) 11.7 Customer Accounts" << endl;
     cin >> num;
     
     switch(num)
@@ -97,6 +102,11 @@ int main(int argc, char** argv) {
         {
             Score score[PLAYERS];
             getData(score, PLAYERS);
+        }
+        case 7: 
+        {
+            Account account[ACCOUNT];
+            getData(account, SIZE);
         }
         
         
@@ -235,6 +245,95 @@ void getData(Score a[], int size)
     display(a, size);
 }
 
+void getData(Account a[], int size)
+{
+    string reply;
+    char name[size];
+    int num, count = 0, track = 0;
+    do{
+    cout << "1) Enter New Account" << endl;
+    cout << "2) Edit Existing Account" << endl;
+    cout << "3) Display All Accounts" << endl;
+    cin >> num;
+   
+    
+    if(num == 1)
+        {
+            cin.ignore();
+            cout << "Enter Account Name: ";
+            cin.getline(a[count].name, size);
+            cout << "Enter Address: ";
+            cin.getline(a[count].addr, size);
+            cout << "Enter City, State, and Zip: ";
+            cin.getline(a[count].cSZ, size);
+            cout << "Enter Telephone Number: ";
+            cin.getline(a[count].phone, size);
+            cout << "Enter Account Balance: ";
+            cin >> a[count].bal;
+            cin.ignore();
+            cout << "Enter Date of Last Payment: ";
+            cin.getline(a[count].lastPay, size);
+            count++;
+        }
+    if(num == 2)
+        {
+            display(a, size, count);
+            cout << "Enter the Name of the Account to edit: ";
+            cin.ignore();
+            cin.getline(name, size);
+            for(int i = 0; i < count; i++)
+            {
+                if(name == a[i].name)
+                    track = i;
+            }
+            cout << "Enter the number of what you would like to change: " << endl;
+            cout << "1) Name" << endl;
+            cout << "2) Address" << endl;
+            cout << "3) City, State, Zip" << endl;
+            cout << "4) Telephone Number" << endl;
+            cout << "5) Account Balance" << endl;
+            cout << "6) Date of Last Payment" << endl;
+            cin >> num;
+            cin.ignore();
+            if(num == 1)
+            {
+                cout << "Enter New Name: ";
+                
+                cin.getline(a[track].name, size);
+            }
+            if(num == 2)
+            {
+                cout << "Enter New Address: ";
+                cin.getline(a[track].addr, size);
+            }
+            if (num == 3)
+            {
+                cout << "Enter New City, State, Zip: ";
+                cin.getline(a[track].cSZ, size);
+            }
+            if(num == 4)
+            {
+                cout << "Enter New Telephone Number: ";
+                cin.getline(a[track].phone, size);
+            }
+            if(num == 5)
+            {
+                cout << "Enter New Account Balance: ";
+                cin >> a[track].bal;
+            }
+            if(num == 6)
+            {
+                cout << "Enter New Date of Last Payment: ";
+                cin.getline(a[track].lastPay, size);
+            }
+        }
+    if(num == 3)
+        display(a, size, count);
+    cout << "Continue? 'Yes' or 'No'" << endl;
+    cin >> reply;
+    }while(reply != "No");
+}
+
 void display(MovieData a)
 {
     cout << endl;
@@ -326,6 +425,23 @@ void display(Score a[], int size)
     cout << "Player with the most points: " << name;
     cout << ". Player number: " << num;
 }
+
+void display(Account a[], int size, int& count)
+{
+    cout << "Accounts found: " << endl;
+    for(int i = 0; i < count; i++)
+    {
+        
+        cout << "Name: " << a[i].name << endl;
+        cout << "Address: " << a[i].addr << endl;
+        cout << "City, State, and ZIP: " << a[i].cSZ << endl;
+        cout << "Telephone Number: " << a[i].phone << endl;
+        cout << "Date of Last Payment: " << a[i].lastPay << endl;
+        cout << endl;
+    }
+    cout << endl;
+}
+
 
 void sort(Weather a[], int size)
 {
