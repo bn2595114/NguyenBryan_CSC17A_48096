@@ -53,6 +53,7 @@ int main(int argc, char** argv) {
     cout << "7) 11.7 Customer Accounts" << endl;
     cout << "8) 11.8 Search Function for Customer Accounts Program" << endl;
     cout << "9) 11.9 Speakers' Bureau" << endl;
+    cout << "10) 11.10 Search Function for the Speakers' Bureau Program" << endl;
     cin >> num;
     
     switch(num)
