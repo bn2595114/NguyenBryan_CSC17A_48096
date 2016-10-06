@@ -47,6 +47,7 @@ int main(int argc, char** argv) {
     cout << "5) 11.5 Weather Statistics Modification" << endl;
     cout << "6) 11.6 Soccer Scores" << endl;
     cout << "7) 11.7 Customer Accounts" << endl;
+    cout << "8) 11.8 Search Function for Customer Accounts Program" << endl;
     cin >> num;
     
     switch(num)
@@ -108,7 +109,11 @@ int main(int argc, char** argv) {
             Account account[ACCOUNT];
             getData(account, SIZE);
         }
-        
+        case 8:
+        {
+            Account account[ACCOUNT];
+            getData(account, SIZE);
+        }
         
     }
     
@@ -254,6 +259,7 @@ void getData(Account a[], int size)
     cout << "1) Enter New Account" << endl;
     cout << "2) Edit Existing Account" << endl;
     cout << "3) Display All Accounts" << endl;
+    cout << "4) Search by Name" << endl;
     cin >> num;
    
     
@@ -270,6 +276,11 @@ void getData(Account a[], int size)
             cin.getline(a[count].phone, size);
             cout << "Enter Account Balance: ";
             cin >> a[count].bal;
+            while(a[count].bal < 0)
+            {
+                cout << "Enter a non negative balance: ";
+                cin >> a[count].bal;
+            }
             cin.ignore();
             cout << "Enter Date of Last Payment: ";
             cin.getline(a[count].lastPay, size);
@@ -329,6 +340,34 @@ void getData(Account a[], int size)
         }
     if(num == 3)
         display(a, size, count);
+    if(num == 4)
+    {
+        cin.ignore();
+        cout << "Enter Name: ";
+        cin.getline(name, size);
+        cout << endl;
+        for(int i = 0; i < count; i++)
+            {
+                if(name == a[i].name)
+                {
+                    track = i;
+                }
+            }
+        if(track < 10 || track > 0)
+        {
+        cout << name << " has been found!" << endl;
+        cout << "Name: " << a[track].name << endl;
+        cout << "Address: " << a[track].addr << endl;
+        cout << "City, State, and ZIP: " << a[track].cSZ << endl;
+        cout << "Telephone Number: " << a[track].phone << endl;
+        cout << "Date of Last Payment: " << a[track].lastPay << endl;
+        cout << endl;
+        }
+        else
+            cout << "Name Not Found." << endl;
+        
+        
+    }
     cout << "Continue? 'Yes' or 'No'" << endl;
     cin >> reply;
     }while(reply != "No");
@@ -431,7 +470,6 @@ void display(Account a[], int size, int& count)
     cout << "Accounts found: " << endl;
     for(int i = 0; i < count; i++)
     {
-        
         cout << "Name: " << a[i].name << endl;
         cout << "Address: " << a[i].addr << endl;
         cout << "City, State, and ZIP: " << a[i].cSZ << endl;
