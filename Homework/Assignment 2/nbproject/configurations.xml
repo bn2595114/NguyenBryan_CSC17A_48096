@@ -7,6 +7,7 @@
       <itemPath>ComData.h</itemPath>
       <itemPath>MovieData.h</itemPath>
       <itemPath>MovieProfit.h</itemPath>
+      <itemPath>Soccer.h</itemPath>
       <itemPath>WeatherStatistics.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -46,6 +47,8 @@
       </item>
       <item path="MovieProfit.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Soccer.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="WeatherStatistics.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
@@ -76,6 +79,8 @@
       <item path="MovieData.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MovieProfit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Soccer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="WeatherStatistics.h" ex="false" tool="3" flavor2="0">
       </item>

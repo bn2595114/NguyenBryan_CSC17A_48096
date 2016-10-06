@@ -11,20 +11,24 @@ using namespace std;
 
 const int SIZE = 30;
 const int MONTHS = 12;
+const int PLAYERS = 12;
 
 #include "MovieData.h"
 #include "MovieProfit.h"
 #include "ComData.h"
 #include "WeatherStatistics.h"
+#include "Soccer.h"
 
 void getData(MovieData&);
 void getData(MovieProfit&);
 void getData(ComData&);
 void getData(Weather [], int);
+void getData(Score [], int);
 void display(MovieData);
 void display(MovieProfit);
 void display(ComData);
 void display(Weather [], int);
+void display(Score [], int);
 
 void sort(Weather [], int);
 
@@ -37,6 +41,7 @@ int main(int argc, char** argv) {
     cout << "3) 11.3 Corporate Sales Data" << endl;
     cout << "4) 11.4 Weather Statistics" << endl;
     cout << "5) 11.5 Weather Statistics Modification" << endl;
+    cout << "6) 11.6 Soccer Scores" << endl;
     cin >> num;
     
     switch(num)
@@ -87,6 +92,11 @@ int main(int argc, char** argv) {
         {
             Weather stat[MONTHS];
             getData(stat, MONTHS);
+        }
+        case 6: 
+        {
+            Score score[PLAYERS];
+            getData(score, PLAYERS);
         }
         
         
@@ -203,6 +213,28 @@ void getData(Weather a[], int size)
     display(a, size);
 }
 
+void getData(Score a[], int size)
+{
+    int total  = 0;
+    for(int i = 0; i < size; i++)
+    {
+        cin.ignore();
+        cout << "Enter Player " << i+1 << " Name: ";
+        cin.getline(a[i].name, size);
+        cout << "Enter Player " << i+1 << " Number: ";
+        cin >> a[i].num;
+        cout << "Enter Player " << i+1 << " Score: ";
+        cin >> a[i].score;
+        while(a[i].score < 0)
+        {
+            cout << "Enter a valid positive number: ";
+            cin >> a[i].score;
+        }
+    }
+    cout << endl;
+    display(a, size);
+}
+
 void display(MovieData a)
 {
     cout << endl;
@@ -269,6 +301,30 @@ void display(Weather a[], int size)
     cout << "Lowest Temperature is: " << a[size-1].lTemp << endl;
     cout << "Average of the average temperatures: " << avgTemp << endl;
    
+}
+
+void display(Score a[], int size)
+{
+    string name, num;
+    int total = 0;
+    int max = 0;
+    for(int i = 0; i < size; i++)
+    {
+        cout << "Player " << i+1 << " Name: " << a[i].name << endl;
+        cout << "Player Number: " << a[i].num << endl;
+        cout << "Points Scored: " << a[i].score << endl;
+        total += a[i].score;
+        if(a[i].score > max)
+        {
+            name = a[i].name;
+            num = a[i].num;
+            max = a[i].score;
+        }
+    }
+    cout << endl;
+    cout << "Total Points Scored: " << total << endl;
+    cout << "Player with the most points: " << name;
+    cout << ". Player number: " << num;
 }
 
 void sort(Weather a[], int size)

@@ -1,5 +1,5 @@
 build/Debug/Cygwin-Windows/main.o: main.cpp MovieData.h MovieProfit.h \
- ComData.h WeatherStatistics.h
+ ComData.h WeatherStatistics.h Soccer.h
 
 MovieData.h:
 
@@ -8,3 +8,5 @@ MovieProfit.h:
 ComData.h:
 
 WeatherStatistics.h:
+
+Soccer.h:
