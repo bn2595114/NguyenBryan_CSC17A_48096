@@ -13,6 +13,7 @@ const int SIZE = 100;
 const int MONTHS = 12;
 const int PLAYERS = 12;
 const int ACCOUNT = 10;
+const int SPEAKER = 10;
 
 #include "MovieData.h"
 #include "MovieProfit.h"
@@ -20,6 +21,7 @@ const int ACCOUNT = 10;
 #include "WeatherStatistics.h"
 #include "Soccer.h"
 #include "Accounts.h"
+#include "Bureau.h"
 
 void getData(MovieData&);
 void getData(MovieProfit&);
@@ -27,12 +29,14 @@ void getData(ComData&);
 void getData(Weather [], int);
 void getData(Score [], int);
 void getData(Account [], int);
+void getData(Speaker [], int);
 void display(MovieData);
 void display(MovieProfit);
 void display(ComData);
 void display(Weather [], int);
 void display(Score [], int);
 void display(Account [], int, int&);
+void display(Speaker [], int, int&);
 
 void sort(Weather [], int);
 
@@ -48,6 +52,7 @@ int main(int argc, char** argv) {
     cout << "6) 11.6 Soccer Scores" << endl;
     cout << "7) 11.7 Customer Accounts" << endl;
     cout << "8) 11.8 Search Function for Customer Accounts Program" << endl;
+    cout << "9) 11.9 Speakers' Bureau" << endl;
     cin >> num;
     
     switch(num)
@@ -113,6 +118,16 @@ int main(int argc, char** argv) {
         {
             Account account[ACCOUNT];
             getData(account, SIZE);
+        }
+        case 9:
+        {
+            Speaker speaker[SPEAKER];
+            getData(speaker, SIZE);
+        }
+        case 10:
+        {
+            Speaker speaker[SPEAKER];
+            getData(speaker, SIZE);
         }
         
     }
@@ -373,6 +388,113 @@ void getData(Account a[], int size)
     }while(reply != "No");
 }
 
+void getData(Speaker a[], int size)
+{
+    string reply;
+    char name[size];
+    int num, count = 0, track = 0;
+    do{
+    cout << "1) Enter New Speaker Information" << endl;
+    cout << "2) Edit Existing Speaker Information" << endl;
+    cout << "3) Display All Speakers" << endl;
+    cout << "4) Search by Name" << endl;
+    cin >> num;
+   
+    
+    if(num == 1)
+        {
+            cin.ignore();
+            cout << "Enter Speaker Name: ";
+            cin.getline(a[count].name, size);
+            cout << "Enter Telephone Number: ";
+            cin.getline(a[count].phone, size);
+            cout << "Enter Speaking Topic: ";
+            cin.getline(a[count].topic, size);
+            cout << "Enter Fee Required: ";
+            cin >> a[count].fee;
+            while(a[count].fee < 0)
+            {
+                cout << "Enter a non negative balance: ";
+                cin >> a[count].fee;
+            }
+            count++;
+        }
+    if(num == 2)
+        {
+            display(a, size, count);
+            cout << "Enter the Name to edit: ";
+            cin.ignore();
+            cin.getline(name, size);
+            for(int i = 0; i < count; i++)
+            {
+                if(name == a[i].name)
+                    track = i;
+            }
+            cout << "Enter the number of what you would like to change: " << endl;
+            cout << "1) Name" << endl;
+            cout << "2) Telephone Number" << endl;
+            cout << "3) Speaking Topic" << endl;
+            cout << "4) Fee Required" << endl;
+            cin >> num;
+            cin.ignore();
+            if(num == 1)
+            {
+                cout << "Enter New Name: ";
+                
+                cin.getline(a[track].name, size);
+            }
+            if(num == 2)
+            {
+                cout << "Enter New Address: ";
+                cin.getline(a[track].phone, size);
+            }
+            if (num == 3)
+            {
+                cout << "Enter New City, State, Zip: ";
+                cin.getline(a[track].topic, size);
+            }
+            if(num == 4)
+            {
+                cout << "Enter New Telephone Number: ";
+                cin >> a[track].fee;
+            }
+        }
+    if(num == 3)
+        display(a, size, count);
+    if(num == 4)
+    {
+        cin.ignore();
+        cout << "Enter Name: ";
+        cin.getline(name, size);
+        cout << endl;
+        for(int i = 0; i < count; i++)
+            {
+                if(name == a[i].name)
+                {
+                    track = i;
+                }
+            }
+        if(track < 10 || track > 0)
+        {
+        cout << name << " has been found!" << endl;
+        cout << "Name: " << a[track].name << endl;
+        cout << "Telephone Number: " << a[track].phone << endl;
+        cout << "Speaking Topic: " << a[track].topic << endl;
+        cout << "Fee Required: " << a[track].fee << endl;
+        cout << endl;
+        }
+        else
+            cout << "Name Not Found." << endl;
+        
+        
+    }
+    cout << "Continue? 'Yes' or 'No'" << endl;
+    cin >> reply;
+    }while(reply != "No");
+}
+
+
+
 void display(MovieData a)
 {
     cout << endl;
@@ -480,6 +602,17 @@ void display(Account a[], int size, int& count)
     cout << endl;
 }
 
+void display(Speaker a[], int size, int& count)
+{
+    for(int i = 0; i < count; i++)
+    {
+        cout << "Name: " << a[i].name << endl;
+        cout << "Telephone Number: " << a[i].phone << endl;
+        cout << "Speaking Topic: " << a[i].topic << endl;
+        cout << "Fee Required: " << a[i].fee << endl;
+    }
+    cout << endl;
+}
 
 void sort(Weather a[], int size)
 {
