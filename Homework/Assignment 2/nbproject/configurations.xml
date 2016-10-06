@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Accounts.h</itemPath>
+      <itemPath>Array.h</itemPath>
       <itemPath>Bureau.h</itemPath>
       <itemPath>ComData.h</itemPath>
       <itemPath>MovieData.h</itemPath>
@@ -45,6 +46,8 @@
       </compileType>
       <item path="Accounts.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Array.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Bureau.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ComData.h" ex="false" tool="3" flavor2="0">
@@ -81,6 +84,8 @@
         </asmTool>
       </compileType>
       <item path="Accounts.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Array.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Bureau.h" ex="false" tool="3" flavor2="0">
       </item>

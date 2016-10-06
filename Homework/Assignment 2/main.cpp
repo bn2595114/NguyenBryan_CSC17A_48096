@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 const int SIZE = 100;
@@ -22,6 +23,7 @@ const int SPEAKER = 10;
 #include "Soccer.h"
 #include "Accounts.h"
 #include "Bureau.h"
+#include "Array.h"
 
 void getData(MovieData&);
 void getData(MovieProfit&);
@@ -40,6 +42,10 @@ void display(Speaker [], int, int&);
 
 void sort(Weather [], int);
 
+Array *fillAry(int);
+void prntAry(Array *,int);
+void destroy(Array *);
+
 int main(int argc, char** argv) {
 
     int num;
@@ -54,6 +60,7 @@ int main(int argc, char** argv) {
     cout << "8) 11.8 Search Function for Customer Accounts Program" << endl;
     cout << "9) 11.9 Speakers' Bureau" << endl;
     cout << "10) 11.10 Search Function for the Speakers' Bureau Program" << endl;
+    cout << "11) CLASS ASSIGNMENT" << endl;
     cin >> num;
     
     switch(num)
@@ -129,6 +136,23 @@ int main(int argc, char** argv) {
         {
             Speaker speaker[SPEAKER];
             getData(speaker, SIZE);
+        }
+        case 11:
+        { 
+            srand(static_cast<unsigned int>(time(0)));
+    
+            //Declare variables
+            int perLine=10;
+            const int SIZE=100;
+    
+             //Input data
+             Array *array=fillAry(SIZE);
+    
+             //Display initialization
+             prntAry(array,perLine);
+    
+             //Destroy the array structure and its contents
+             destroy(array);
         }
         
     }
@@ -639,4 +663,29 @@ void sort(Weather a[], int size)
             }
                 
         }
+}
+
+
+void destroy(Array *a){
+    delete [](*a).data;
+    delete a;
+}
+
+void prntAry(Array *a,int perLine){
+    cout<<endl;
+    for(int i=0;i<(*a).size;i++){
+        cout<<(*a).data[i]<<" ";
+        if(i%perLine==(perLine-1))cout<<endl;
+    }
+    cout<<endl;
+}
+
+Array *fillAry(int n){
+    Array *a=new Array;
+    (*a).size=n;
+    (*a).data=new int[n];
+    for(int i=0;i<n;i++){
+        (*a).data[i]=rand()%90+10;//Random 2 digit numbers
+    }
+    return a;
 }
