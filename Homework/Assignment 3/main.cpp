@@ -14,6 +14,9 @@ using namespace std;
 
 #include "company.h"
 
+//FILE NAME: hello.txt 
+//FILE NAME: hello1.txt
+
 int count(char*);
 char* rev(char*);
 int wCount(char*);
@@ -173,6 +176,7 @@ int main(int argc, char** argv) {
                 ++count;
             }
             file.close();
+            break;
         }
         case 7:
         {
@@ -190,6 +194,7 @@ int main(int argc, char** argv) {
                 if(count%2 == 0)
                     cout << endl;
             }
+            break;
         }
         case 8:
         {
@@ -219,6 +224,7 @@ int main(int argc, char** argv) {
             }
             infile.close();
             outfile.close();
+            break;
         }
         case 9:
         {
@@ -237,6 +243,7 @@ int main(int argc, char** argv) {
                     cout << endl;
                 }
             }
+            break;
         }
         case 10:
         {
@@ -246,11 +253,12 @@ int main(int argc, char** argv) {
             cin.ignore();
             cin.getline(comp.dName, 50);
             comp.quar = new int[4];
-            comp.qSale = new int[4];
+            
             
             
             
             delete[] comp.quar;
+            break;
         }
         default: if(n < 1 || n >12)cout << "You entered " << n << " to exit";
     }
