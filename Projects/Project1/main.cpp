@@ -45,13 +45,6 @@ int main(int argc, char** argv) {
     account(newPlay(play));
     fstream file;
     
-    
-   
-  
-    
-   
-    
-   
     return 0;
 }
 
@@ -68,20 +61,18 @@ Player newPlay(Player user)
     user.hard = 0;
     user.win =  0;
     user.lose = 0;
-    user.winL = 0;
+    
     user.avgG = 0;
     acnt.open(fName.c_str(), ios::in | ios::binary);
     acnt.read(reinterpret_cast<char*>(&user), sizeof(user));
-    ;
     acnt.close();
-    
-    
     return user;
 }
 
 void account(Player user)
 {
-    int x;
+    char x;
+    char stat;
     fstream acnt;
     string fName;
     fName = user.name;
@@ -91,16 +82,27 @@ void account(Player user)
     acnt.open(fName.c_str(), ios::out | ios::binary);
     if(!acnt)
         cout << "Unregistered Account. Creating your Account..." << endl;
+    acnt.close();
     enter(dfclt(user), user);
     int games = user.easy+user.medium+user.hard;
-        cout << user.guess[games];
         user.avgG += user.guess[games];
     
     user.avgG /= static_cast<float>(games);
-    cout << "Enter 1 to play again" << endl;
+    cout << "Enter 1 to play again and any other number to stop" << endl;
     cin >> x;
-    } while(x==1);
+    while(isalpha(x))
+    {
+        cout << "Not a number. Enter a number" << endl;
+        cin >> x;
+    }
+    } while(x=='1');
     
+    cout << "View your stats? y/n" << endl;
+    cin.ignore();
+    cin >> stat;
+    if(tolower(stat) == 'y')
+        stats(user);
+    acnt.open(fName.c_str(), ios::out | ios::binary);
     acnt.write(reinterpret_cast<char*>(&user), sizeof(user));
     acnt.close();
     acnt.open(fName.c_str(), ios::in | ios::binary);
@@ -125,6 +127,12 @@ char dfclt(Player user)
     cout << "Choose a difficulty: " << endl;
     cout << "E - Easy" << endl << "M - Medium" << endl << "H - Hard" << endl;
     cin >> dfclt;
+    while(isdigit(dfclt) || ((toupper(dfclt) != 'E') && (toupper(dfclt) != 'M')
+          && (toupper(dfclt) != 'H')))
+    {
+        cout << "Enter a valid choice" << endl;
+        cin >> dfclt;
+    }
     dfclt = toupper(dfclt);
     if(dfclt == 'E')
         user.easy++;
@@ -137,12 +145,17 @@ char dfclt(Player user)
 
 int topic()
 {
-    int topic;
+    char topic;
     cout << "What topic would you like to guess from?" << endl;
     cout << "1) Animals" << endl;
     cout << "2) Candy" << endl;
     cout << "3) Fruits" << endl;
     cin >> topic;
+    while(isalpha(topic) || (topic != '1' && topic != '2' && topic != '3'))
+    {
+        cout << "Enter a valid number" << endl;
+        cin >> topic;
+    }
     return topic;
 }
 
@@ -161,12 +174,12 @@ void enter(char dfclt, Player& user)
 void eMode(Player& user)
 {
     
-    int choice = topic();
-    if(choice == 1)
+    char choice = topic();
+    if(choice == '1')
         play(eAnim(), user);
-    if(choice == 2)
+    if(choice == '2')
         play(eCandy(), user);
-    if(choice == 3)
+    if(choice == '3')
         play(eFruit(), user);  
 }
 
@@ -203,11 +216,11 @@ void mMode(Player& user)
 {
    
     int choice = topic();
-    if(choice == 1)
+    if(choice == '1')
         play(mAnim(), user);
-    if(choice == 2)
+    if(choice == '2')
         play(mCandy(), user);
-    if(choice == 3)
+    if(choice == '3')
         play(mFruit(), user); 
 }
 
@@ -244,11 +257,11 @@ void hMode(Player& user)
 {
     
     int choice = topic();
-    if(choice == 1)
+    if(choice == '1')
         play(hAnim(), user);
-    if(choice == 2)
+    if(choice == '2')
         play(hCandy(), user);
-    if(choice == 3)
+    if(choice == '3')
         play(hFruit(), user);
 }
 
@@ -331,11 +344,16 @@ void play(string subj, Player& user)
             cout << answer[i] << " ";
         }
         if(guess[y] != answer[x])
+        {
+            cout << endl << guess[y] << " is not in the word!" << endl;
             fail++;
+            cout << "You have " << 10-fail << " tries left!" << endl;
+            
+        }
         if(space == 1)
         if(count+1 == strlen(word))
         {
-            cout << "Congratulations, You win!" << endl;
+            cout << endl << "Congratulations, You win!" << endl;
             user.win++;
             
             delete[] answer;
@@ -343,7 +361,7 @@ void play(string subj, Player& user)
         }
         if(count == strlen(word))
         {
-            cout << "Congratulations, You win!" << endl;
+            cout << endl << "Congratulations, You win!" << endl;
             user.win++;
             delete[] answer;
             return;
@@ -351,7 +369,19 @@ void play(string subj, Player& user)
         check[y] = guess[y];
         y++;
     }
-    cout << "You lose! Better luck next time" << endl;
+    cout << endl << "You lose! Better luck next time" << endl;
+    user.lose++;
     delete[] answer;
 }
 
+void stats(Player& user)
+{
+    cout << user.name << "'s stats: " << endl;
+    cout << "Wins: " << user.win << endl;
+    cout << "Losses: " << user.lose << endl;
+    cout << "Easy Games: " << user.easy << endl;
+    cout << "Medium Games: " << user.medium << endl;
+    cout << "Hard Games: " << user.hard << endl;
+    cout << "Total Games: " << user.easy+user.medium+user.hard << endl;
+    cout << "Average Total Guesses: " << user.avgG << endl << endl;
+}
