@@ -11,6 +11,7 @@ using namespace std;
 
 #include "Date.h"
 #include "PersonalData.h"
+#include "RetailItem.h"
 
 int main(int argc, char** argv) {
 
@@ -70,13 +71,68 @@ int main(int argc, char** argv) {
             cin.getline(phone, 50);
             cout << "Enter your age: ";
             cin >> age;
-            cout << name << endl;
+            
             Data myInfo(name, addr, age, phone);
-            cout << myInfo.getAge() << endl;
-            cout << myInfo.getName();
             cout << endl;
+            cout << "Your information: " << endl;
+            cout << myInfo.getName() << endl;
+            cout << myInfo.getAge() << endl;
+            cout << myInfo.getAddress() << endl;
+            cout << myInfo.getNumber() << endl;
+            cout << endl;
+            
             delete[] name;
             
+            break;
+        }
+        case 3: 
+        {
+            char* des, *des1, *des2;
+            int unit;
+            float price;
+            des = new char[100];
+            des1 = new char[100];
+            des2 = new char[100];
+            cin.ignore();
+            cout << "Enter the Description of product: ";
+            cin.getline(des, 100);
+            cout << "Enter the Units on hand of product: ";
+            cin >> unit;
+            cout << "Enter the price of product: ";
+            cin >> price;
+            RetailItem item1(des, unit, price);
+            cin.ignore();
+            cout << "Enter the Description of product: ";
+            cin.getline(des1, 100);
+            cout << "Enter the Units on hand of product: ";
+            cin >> unit;
+            cout << "Enter the price of product: ";
+            cin >> price;
+            RetailItem item2(des1, unit, price);
+            cin.ignore();
+            cout << "Enter the Description of product: ";
+            cin.getline(des2, 100);
+            cout << "Enter the Units on hand of product: ";
+            cin >> unit;
+            cout << "Enter the price of product: ";
+            cin >> price;
+            RetailItem item3(des2, unit, price);
+            
+            cout << "Item 1: " << endl;
+            cout << item1.getDes() << endl;
+            cout << item1.getUnits() << " Units" << endl;
+            cout << item1.getPrice() << " Dollars" << endl << endl;
+            cout << "Item 2: " << endl;
+            cout << item2.getDes() << endl;
+            cout << item2.getUnits() << " Units" << endl;
+            cout << item2.getPrice() << " Dollars" << endl << endl;
+            cout << "Item 3: " << endl;
+            cout << item3.getDes() << endl;
+            cout << item3.getUnits() << " Units" << endl;
+            cout << item3.getPrice() << " Dollars" << endl << endl;
+            delete[] des;
+            delete[] des1;
+            delete[] des2;
             break;
         }
         default: 
