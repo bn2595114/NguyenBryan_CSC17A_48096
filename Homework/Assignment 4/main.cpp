@@ -25,6 +25,7 @@ int main(int argc, char** argv) {
     cout << "2) 13.4 Personal Information Class" << endl;
     cout << "3) 13.5 RetailItem Class" << endl;
     cout << "4) 13.6 Inventory Class" << endl;
+    cout << "5) 13.7 TestScores Class" << endl;
     cin >> inN;
     
     switch(inN)
