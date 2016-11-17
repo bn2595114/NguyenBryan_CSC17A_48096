@@ -5,8 +5,10 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>Date.h</itemPath>
+      <itemPath>Inventory.h</itemPath>
       <itemPath>PersonalData.h</itemPath>
       <itemPath>RetailItem.h</itemPath>
+      <itemPath>TestScore.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -46,6 +48,8 @@
       </item>
       <item path="Date.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Inventory.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="PersonalData.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PersonalData.h" ex="false" tool="3" flavor2="0">
@@ -53,6 +57,8 @@
       <item path="RetailItem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RetailItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TestScore.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -81,6 +87,8 @@
       </item>
       <item path="Date.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Inventory.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="PersonalData.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="PersonalData.h" ex="false" tool="3" flavor2="0">
@@ -88,6 +96,8 @@
       <item path="RetailItem.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="RetailItem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TestScore.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

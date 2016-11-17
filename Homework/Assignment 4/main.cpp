@@ -12,6 +12,8 @@ using namespace std;
 #include "Date.h"
 #include "PersonalData.h"
 #include "RetailItem.h"
+#include "Inventory.h"
+#include "TestScore.h"
 
 int main(int argc, char** argv) {
 
@@ -20,8 +22,9 @@ int main(int argc, char** argv) {
     do{
     cout << "Enter a number: " << endl;
     cout << "1) 13.1 Date" << endl;
-    
-    
+    cout << "2) 13.4 Personal Information Class" << endl;
+    cout << "3) 13.5 RetailItem Class" << endl;
+    cout << "4) 13.6 Inventory Class" << endl;
     cin >> inN;
     
     switch(inN)
@@ -134,6 +137,38 @@ int main(int argc, char** argv) {
             delete[] des1;
             delete[] des2;
             break;
+        }
+        case 4:
+        {
+            int i, q;
+            float c;
+            cout << "Enter Item Number: ";
+            cin >> i;
+            cout << "Enter Quantity: ";
+            cin >> q;
+            cout << "Enter cost: ";
+            cin >> c;
+            Inventory item(i,q,c);
+            cout << endl << "Item Number: " << item.getNum();
+            cout << endl << "Quantity: " << item.getQuan();
+            cout << endl << "Cost: " << item.getCost();
+            cout << endl << "Total Cost: " << item.getTotal();
+            break;
+        }
+        case 5: 
+        {
+            float t1, t2, t3;
+            cout << "Enter test score 1: ";
+            cin >> t1;
+            cout << "Enter test score 2: ";
+            cin >> t2;
+            cout << "Enter test score 3: ";
+            cin >> t3;
+            TestScore test(t1, t2, t3);
+            cout << "Test Score 1: " << test.getTest1() << endl;
+            cout << "Test Score 2: " << test.getTest2() << endl;
+            cout << "Test Score 3: " << test.getTest3() << endl;
+            cout << "Test Average: " << test.getAvg() << endl;
         }
         default: 
             cout << "You entered " << inN << " to exit.";
