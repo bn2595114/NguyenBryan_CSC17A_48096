@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Date.o \
+	${OBJECTDIR}/Numbers.o \
 	${OBJECTDIR}/PersonalData.o \
 	${OBJECTDIR}/RetailItem.o \
 	${OBJECTDIR}/main.o
@@ -69,6 +70,11 @@ ${OBJECTDIR}/Date.o: Date.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Date.o Date.cpp
+
+${OBJECTDIR}/Numbers.o: Numbers.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Numbers.o Numbers.cpp
 
 ${OBJECTDIR}/PersonalData.o: PersonalData.cpp 
 	${MKDIR} -p ${OBJECTDIR}

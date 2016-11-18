@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>Date.h</itemPath>
       <itemPath>Inventory.h</itemPath>
+      <itemPath>Numbers.h</itemPath>
       <itemPath>PersonalData.h</itemPath>
       <itemPath>RetailItem.h</itemPath>
       <itemPath>TestScore.h</itemPath>
@@ -18,6 +19,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Date.cpp</itemPath>
+      <itemPath>Numbers.cpp</itemPath>
       <itemPath>PersonalData.cpp</itemPath>
       <itemPath>RetailItem.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -49,6 +51,10 @@
       <item path="Date.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Inventory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Numbers.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Numbers.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="PersonalData.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -88,6 +94,10 @@
       <item path="Date.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Inventory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Numbers.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Numbers.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="PersonalData.cpp" ex="false" tool="1" flavor2="0">
       </item>

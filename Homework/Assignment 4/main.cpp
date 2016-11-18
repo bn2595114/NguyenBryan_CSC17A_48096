@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 #include "Date.h"
@@ -14,6 +15,7 @@ using namespace std;
 #include "RetailItem.h"
 #include "Inventory.h"
 #include "TestScore.h"
+#include "Numbers.h"
 
 int main(int argc, char** argv) {
 
@@ -26,6 +28,7 @@ int main(int argc, char** argv) {
     cout << "3) 13.5 RetailItem Class" << endl;
     cout << "4) 13.6 Inventory Class" << endl;
     cout << "5) 13.7 TestScores Class" << endl;
+    cout << "6) 14.1 Numbers Class" << endl;
     cin >> inN;
     
     switch(inN)
@@ -170,6 +173,21 @@ int main(int argc, char** argv) {
             cout << "Test Score 2: " << test.getTest2() << endl;
             cout << "Test Score 3: " << test.getTest3() << endl;
             cout << "Test Average: " << test.getAvg() << endl;
+        }
+        case 6:
+        {
+            int n;
+            cout << "Enter a number 0-9999: ";
+            cin >> n;
+            while(n < 0 || n > 9999)
+            {
+                cout << "Please enter a valid number: ";
+                cin >> n;
+            }
+                cout << "The english translation is: " << endl;
+                Numbers number(n);
+            
+            break;
         }
         default: 
             cout << "You entered " << inN << " to exit.";
