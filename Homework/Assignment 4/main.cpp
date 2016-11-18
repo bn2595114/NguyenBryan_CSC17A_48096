@@ -17,6 +17,8 @@ using namespace std;
 #include "TestScore.h"
 #include "Numbers.h"
 #include "Days.h"
+#include "NumDay.h"
+#include "Month.h"
 
 int main(int argc, char** argv) {
 
@@ -219,7 +221,31 @@ int main(int argc, char** argv) {
         }
         case 9:
         {
-            
+            NumDays emp1(12);
+            NumDays emp2(18);
+            cout << "Employee 1 hours to work day: " << emp1.getDay() << endl;
+            cout << "Employee 1++ hours: " << (emp1++).getHr() << endl;
+            cout << "Employee 1 hours: " << emp1.getHr() << endl;
+            cout << "++Employee 1: " << (++emp1).getHr() << endl;
+            cout << "Employee 1: " << emp1.getHr() << endl;
+            cout << "Employee 2 hours to work day: " << emp2.getDay() << endl;
+            cout << "Employee 2-- hours: " << (emp2--).getHr() << endl;
+            cout << "Employee 2 hours: " << emp2.getHr() << endl;
+            cout << "-- Employee 2 hours: " << (--emp2).getHr() << endl;
+            cout << "Employee 2 hours: " << emp2.getHr() << endl;
+        }
+        case 10:
+        {
+            Month test(12);
+            cout << "test(1): " << test.getMonth() << endl;
+            cout << "test++: " << (test++).getMonth() << endl;
+            cout << test.getName() << endl << endl;
+            cout << "--test: " << (--test).getMonth() << endl;
+            cout << test.getName() << endl << endl;
+            cout << "++test: " << (++test).getMonth() << endl;
+            cout << test.getName() << endl << endl;
+            cout << "test--: " << (test--).getMonth() << endl;
+            cout << test.getName() << endl << endl;
         }
         default: 
             cout << "You entered " << inN << " to exit.";

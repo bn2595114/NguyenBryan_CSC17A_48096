@@ -7,6 +7,8 @@
       <itemPath>Date.h</itemPath>
       <itemPath>Days.h</itemPath>
       <itemPath>Inventory.h</itemPath>
+      <itemPath>Month.h</itemPath>
+      <itemPath>NumDay.h</itemPath>
       <itemPath>Numbers.h</itemPath>
       <itemPath>PersonalData.h</itemPath>
       <itemPath>RetailItem.h</itemPath>
@@ -21,6 +23,8 @@
                    projectFiles="true">
       <itemPath>Date.cpp</itemPath>
       <itemPath>Days.cpp</itemPath>
+      <itemPath>Month.cpp</itemPath>
+      <itemPath>NumDay.cpp</itemPath>
       <itemPath>Numbers.cpp</itemPath>
       <itemPath>PersonalData.cpp</itemPath>
       <itemPath>RetailItem.cpp</itemPath>
@@ -57,6 +61,14 @@
       <item path="Days.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Inventory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Month.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Month.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NumDay.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NumDay.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Numbers.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -104,6 +116,14 @@
       <item path="Days.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Inventory.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Month.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Month.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NumDay.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NumDay.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Numbers.cpp" ex="false" tool="1" flavor2="0">
       </item>
