@@ -16,6 +16,7 @@ using namespace std;
 #include "Inventory.h"
 #include "TestScore.h"
 #include "Numbers.h"
+#include "Days.h"
 
 int main(int argc, char** argv) {
 
@@ -29,6 +30,7 @@ int main(int argc, char** argv) {
     cout << "4) 13.6 Inventory Class" << endl;
     cout << "5) 13.7 TestScores Class" << endl;
     cout << "6) 14.1 Numbers Class" << endl;
+    cout << "7) 14.2 Day of the Year" << endl;
     cin >> inN;
     
     switch(inN)
@@ -188,6 +190,36 @@ int main(int argc, char** argv) {
                 Numbers number(n);
             
             break;
+        }
+        case 7:
+        {
+            int d;
+            cout << "Enter a day 1-365: ";
+            cin >> d;
+            while(d > 365 || d < 1)
+            {
+                cout << "Enter a valid non leap year day: ";
+                cin >> d;
+            }
+            DayOfYear day(d);
+            break;
+        }
+        case 8:
+        {
+            int d;
+            cout << "Enter a day 1-365: ";
+            cin >> d;
+            while(d > 365 || d < 1)
+            {
+                cout << "Enter a valid non leap year day: ";
+                cin >> d;
+            }
+            DayOfYear day(d);
+            break;
+        }
+        case 9:
+        {
+            
         }
         default: 
             cout << "You entered " << inN << " to exit.";
