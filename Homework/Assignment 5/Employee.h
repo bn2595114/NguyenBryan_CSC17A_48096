@@ -40,5 +40,23 @@ public:
     int getPayRate() const {return payRate;}
    
 };
+
+class ShiftSupervisor : public Employee
+{
+private:
+    float salary;
+public:
+    void setSalary(float a)
+        {salary = a;}
+    float getSalary()
+        {return salary;}
+    ShiftSupervisor(float a)
+        {salary = a;}
+    ShiftSupervisor()
+        {salary = 0;}
+    
+};
+
+
 #endif	/* EMPLOYEE_H */
 
