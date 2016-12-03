@@ -30,6 +30,19 @@ private:
     int milHours;
 public:
     MilTime(int t);
+    int getTime() const
+        {return milHours;}
+};
+
+class TimeClock
+{
+private:
+    int elapse;
+public:
+    TimeClock();
+    TimeClock(int, int);
+    int getElapse()
+        {return elapse;}
 };
 #endif	/* TIME_H */
 

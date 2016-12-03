@@ -34,6 +34,7 @@ int main(int argc, char** argv) {
     cout << "2) Time Format" << endl;
     cout << "3) Essay Class" << endl;
     cout << "4) Shift Supervisor Class" << endl;
+    cout << "5) Time Clock" << endl;
     
     cin >> inN;
     switch(inN)
@@ -42,8 +43,8 @@ int main(int argc, char** argv) {
         case 2:{problem2();break;}
         case 3:{problem3();break;}
         case 4:{problem4();break;}
-        /*case 5:{problem5();break;}
-        case 6:{problem6();break;}
+        case 5:{problem5();break;}
+        /*case 6:{problem6();break;}
         case 7:{problem7();break;}
         case 8:{problem8();break;}
         case 9:{problem9();break;}
@@ -163,4 +164,28 @@ void problem4()
     else
         x.setSalary(salary);
     cout << "Your total salary: " << x.getSalary();
+}
+
+void problem5()
+{
+    cout << "Enter two military times: " << endl;
+    cout << "1: ";
+    int a, b;
+    cin >> a;
+    while(a<0 || a>2399)
+    {
+        cout << "Invalid Input. Enter another number: ";
+        cin >> a;
+    }
+    cout << "2: ";
+    cin >> b;
+    while(b<0 || b>2399)
+    {
+        cout << "Invalid Input. Enter another number: ";
+        cin >> b;
+    }
+    MilTime c(a);
+    MilTime d(b);
+    TimeClock f(c.getTime(), d.getTime());
+    cout << "Time elapsed: " << f.getElapse();
 }

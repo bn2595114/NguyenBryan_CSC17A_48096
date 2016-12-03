@@ -28,3 +28,12 @@ MilTime::MilTime(int t)
     }
     milHours = t;
 }
+
+TimeClock::TimeClock(int a, int z)
+{
+    if(a<z)
+        elapse = z-a;
+    else
+        elapse = a-z;
+    
+}
