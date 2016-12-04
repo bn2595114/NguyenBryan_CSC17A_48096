@@ -4,8 +4,10 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Absolute.h</itemPath>
       <itemPath>Employee.h</itemPath>
       <itemPath>Essay.h</itemPath>
+      <itemPath>MinMax.h</itemPath>
       <itemPath>Time.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -41,11 +43,15 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="Absolute.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Employee.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Essay.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Essay.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MinMax.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Time.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -74,11 +80,15 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Absolute.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Employee.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Essay.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Essay.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MinMax.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Time.cpp" ex="false" tool="1" flavor2="0">
       </item>

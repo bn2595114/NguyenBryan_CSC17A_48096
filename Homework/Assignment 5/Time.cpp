@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 #include "Time.h"
@@ -7,9 +8,12 @@ using namespace std;
 MilTime::MilTime(int t)
 {
     
-    try{
+    
         if((t < 0) || (t > 2359))
-            cout << "Invalid Input. Program Terminating";
+        {
+            string exceptionString = "Error: Invalid Input";
+            throw exceptionString;
+        }
         if(t <= 1200)
         {
             hour = t/100;
@@ -21,11 +25,6 @@ MilTime::MilTime(int t)
             min = t%100;
         }
         
-    }
-    catch(char *msg)
-    {
-            cout << "ERROR" << endl;
-    }
     milHours = t;
 }
 

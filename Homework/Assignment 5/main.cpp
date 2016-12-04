@@ -13,6 +13,8 @@ using namespace std;
 #include "Employee.h"
 #include "Time.h"
 #include "Essay.h"
+#include "MinMax.h"
+#include "Absolute.h"
 
 void problem1();
 void problem2();
@@ -35,6 +37,8 @@ int main(int argc, char** argv) {
     cout << "3) Essay Class" << endl;
     cout << "4) Shift Supervisor Class" << endl;
     cout << "5) Time Clock" << endl;
+    cout << "6) Time Format Exceptions" << endl;
+    cout << "7) Minimum/Maximum Templates" << endl;
     
     cin >> inN;
     switch(inN)
@@ -44,10 +48,10 @@ int main(int argc, char** argv) {
         case 3:{problem3();break;}
         case 4:{problem4();break;}
         case 5:{problem5();break;}
-        /*case 6:{problem6();break;}
+        case 6:{problem6();break;}
         case 7:{problem7();break;}
         case 8:{problem8();break;}
-        case 9:{problem9();break;}
+        /*case 9:{problem9();break;}
         case 10:{problem10();break;}*/
         
             default:cout<<"Program Exiting...";
@@ -101,14 +105,19 @@ void problem2()
     int mili;
     cout << "Enter Time in military format: ";
     cin >> mili;
+    try{
     MilTime time(mili);
-    
     cout << "The time in standard format is: " << endl;
     cout << time.getHr() << ":";
     if(time.getMin() == 0)
         cout << "0" << time.getMin();
     else
         cout << time.getMin();
+    }
+    catch(string exceptionString)
+    {
+        cout << exceptionString;
+    }
 }
 
 void problem3()
@@ -188,4 +197,45 @@ void problem5()
     MilTime d(b);
     TimeClock f(c.getTime(), d.getTime());
     cout << "Time elapsed: " << f.getElapse();
+}
+
+void problem6()
+{
+    int mili;
+    cout << "Enter Time in military format: ";
+    cin >> mili;
+    try{
+    MilTime time(mili);
+    cout << "The time in standard format is: " << endl;
+    cout << time.getHr() << ":";
+    if(time.getMin() == 0)
+        cout << "0" << time.getMin();
+    else
+        cout << time.getMin();
+    }
+    catch(string exceptionString)
+    {
+        cout << exceptionString;
+    }
+}
+
+void problem7()
+{
+    float a, b;
+    cout << "Enter two numbers: " << endl;
+    cout << "Number 1: ";
+    cin >> a;
+    cout << "Number 2: " ;
+    cin >> b;
+    
+    cout << "Minimum Number is: " << Min(a,b) << endl;
+    cout << "Max Number is: " << Max(a,b);
+}
+
+void problem8()
+{
+    float num;
+    cout << "Enter a number: ";
+    cin >> num;
+    cout << "The Absolute Value: " << Absolute(num);
 }
