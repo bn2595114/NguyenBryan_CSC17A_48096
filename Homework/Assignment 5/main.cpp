@@ -15,6 +15,7 @@ using namespace std;
 #include "Essay.h"
 #include "MinMax.h"
 #include "Absolute.h"
+#include "Total.h"
 
 void problem1();
 void problem2();
@@ -25,7 +26,7 @@ void problem6();
 void problem7();
 void problem8();
 void problem9();
-void problem10();
+
 int main(int argc, char** argv) {
 
     int inN;
@@ -39,6 +40,8 @@ int main(int argc, char** argv) {
     cout << "5) Time Clock" << endl;
     cout << "6) Time Format Exceptions" << endl;
     cout << "7) Minimum/Maximum Templates" << endl;
+    cout << "8) Absolute Value Template" << endl;
+    cout << "9) Total Template" << endl;
     
     cin >> inN;
     switch(inN)
@@ -51,9 +54,7 @@ int main(int argc, char** argv) {
         case 6:{problem6();break;}
         case 7:{problem7();break;}
         case 8:{problem8();break;}
-        /*case 9:{problem9();break;}
-        case 10:{problem10();break;}*/
-        
+        case 9:{problem9();break;}
             default:cout<<"Program Exiting...";
     }
     cout << endl << endl << endl << endl;
@@ -126,11 +127,6 @@ void problem3()
     
     cout << "Enter grammar grade(maximum 30): ";
     cin >> g;
-    while(g<0 || g>30)
-    {
-        cout << "Invalid Input. Enter a valid score: ";
-        cin >> g;
-    }
     cout << "Enter spelling grade(max 20): ";
     cin >> s;
     while(s<0 || s>20)
@@ -153,6 +149,14 @@ void problem3()
         cin >> c;
     }
     Essay test(g, s, l, c);
+    try{
+    Essay test(g, s, l, c);
+    }
+    catch(string exception)
+    {
+        cout << exception;
+    }
+    
     int total = g+s+l+c;
     cout << "Total Score is: " << test.getTotal() << endl;
     GradedActivity x(total);
@@ -238,4 +242,19 @@ void problem8()
     cout << "Enter a number: ";
     cin >> num;
     cout << "The Absolute Value: " << Absolute(num);
+}
+
+void problem9()
+{
+    char input;
+    float num = 0, tot = 0;
+    
+    do{
+        cout << "Enter a number: ";
+        cin >> num;
+        cout << "Total: " << Total(num, tot) << endl;
+        tot += num;
+        cout << "Enter n to stop. Enter anything else to add another number: ";
+        cin >> input;
+    } while(tolower(input)!= 'n');
 }

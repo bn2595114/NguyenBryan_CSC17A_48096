@@ -1,7 +1,9 @@
 
+#include <string>
+#include <iostream>
+using namespace std;
+
 #include "Essay.h"
-
-
 char GradedActivity::getLetterGrade() const
 {
     char letterGrade;
@@ -29,6 +31,11 @@ Essay::Essay()
 
 Essay::Essay(int g, int s, int l, int c)
 {
+    if(g<0 || g>30)
+    {
+        string exception = "Error. Invalid Grammar Score\n";
+        throw exception;
+    }
     grammar = g;
     spelling = s;
     length = l;

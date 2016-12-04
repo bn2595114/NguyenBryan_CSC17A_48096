@@ -9,6 +9,7 @@
       <itemPath>Essay.h</itemPath>
       <itemPath>MinMax.h</itemPath>
       <itemPath>Time.h</itemPath>
+      <itemPath>Total.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -57,6 +58,8 @@
       </item>
       <item path="Time.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Total.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -93,6 +96,8 @@
       <item path="Time.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Time.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Total.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
