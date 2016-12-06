@@ -15,13 +15,14 @@
 using namespace std;
 #include "Score.h"
 #include "Pattern.h"
+#include "InGame.h"
 
 string getName();
 void instr();
 void writex(Score&, ofstream&);
 void readx(Score&, ifstream&);
 Pattern diff();
-char* guess(char*);
+void guess(Pattern&, Score&);
 
 int main(int argc, char** argv) {
 
@@ -45,8 +46,10 @@ int main(int argc, char** argv) {
     cout << endl;
     Pattern code;
     code = diff();
-    cout << code.code;
-    
+    cout << code.code << endl;
+    guess(code, player);
+    player.out();
+    writex(player, outfile);
     delete[] code.code;
     return 0;
 }
@@ -145,13 +148,25 @@ Pattern diff()
     return mode;
 }
 
-char* guess(char* code)
+void guess(Pattern& code, Score& player)
 {
+    char* guess;
+    Guess g;
+    cout << "Characters: R, O, Y, G, B, I, V, W" << endl;
+    int match = 0;
     for(int i = 0; i < 10; i++)
     {
         cout << "Attempt " << i+1 << endl;
-        cout << "Characters: R, O, Y, G, B, I, V, W" << endl;
         cout << "Enter Your Characters(no space): " << endl;
-        
+        cin >> guess;
+        g.setGuess(guess);
+        if(g.getGuess() == code.code)
+        {
+            cout << "Congratulations! You win!" << endl;
+            player++;
+            return;
+        }
     }
+    cout << "You lose!" << endl;
+        player--;
 }

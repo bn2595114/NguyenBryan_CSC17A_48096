@@ -35,7 +35,8 @@ public:
         games = g;
     }
     void out();
-    
+    Score operator++(int); // for wins
+    Score operator--(int); // for losses
 };
 
 #endif	/* BINARYFILE_H */

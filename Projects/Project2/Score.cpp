@@ -25,3 +25,19 @@ void Score::out()
     cout << "Games Played: " << games << endl;
     
 }
+
+Score Score::operator ++(int)
+{
+    Score temp(name, wins, losses, avg, games);
+    wins++;
+    games++;
+    return temp;
+}
+
+Score Score::operator --(int)
+{
+    Score temp(name, wins, losses, avg, games);
+    losses++;
+    games++;
+    return temp;
+}
