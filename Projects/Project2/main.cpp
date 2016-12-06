@@ -17,9 +17,11 @@ using namespace std;
 #include "Pattern.h"
 
 string getName();
+void instr();
 void writex(Score&, ofstream&);
 void readx(Score&, ifstream&);
 Pattern diff();
+char* guess(char*);
 
 int main(int argc, char** argv) {
 
@@ -31,18 +33,21 @@ int main(int argc, char** argv) {
     float avg = 0;
     name = getName();
     Score player(name, win, lose, avg, game);
-    
+    instr();
     try{
     readx(player, infile);
     }
     catch(string exception)
     {
         cout << exception;
-    }
-    if(!infile)
         writex(player, outfile);
+    }
+    cout << endl;
+    Pattern code;
+    code = diff();
+    cout << code.code;
     
-    
+    delete[] code.code;
     return 0;
 }
 
@@ -51,6 +56,7 @@ string getName()
     string name;
     cout << "What is your name?" << endl;
     cin >> name;
+    cout << endl;
     return name;
 }
 
@@ -78,6 +84,20 @@ void readx(Score& play, ifstream& infile)
     infile.close();
 }
 
+void instr()
+{
+    cout << "Welcome to MasterMind!" << endl;
+    cout << "You will have 10 tries to guess the full combo."<< endl;
+    cout << "If you guess the correct code in the correct order," <<endl;
+    cout << "you win! If not, you lose. Enter a 4 code combo with" << endl;
+    cout << "the given characters presented. Characters ARE repeatable." << endl;
+    cout << "You will be informed about how many of the characters are " << endl;
+    cout << "correct and how many are both correct and right order." << endl;
+    cout << "Good luck!" << endl << endl;;
+}
+
+
+
 Pattern diff()
 {
     int inN;
@@ -85,25 +105,53 @@ Pattern diff()
     cout << "1) Easy" << endl;
     cout << "2) Medium" << endl;
     cout << "3) Hard" << endl;
-    
     cin >> inN;
     Pattern mode;
     char color[8] = {'R', 'O', 'Y', 'G', 'B', 'I', 'V', 'W'};
+    do{
     switch(inN)
     {
         case 1:
         {
+            cout << "The code is 4 characters long!" << endl;
             mode.code = new char[4];
+            for(int i = 0; i < 4; i++)
+                    mode.code[i] = color[rand()%8];
+            break;
         }
         case 2:
         {
+            cout << "The code is 6 characters long!" << endl;
             mode.code = new char[6];
+            for(int i = 0; i < 6; i++)
+                mode.code[i] = color[rand()%8];
+            break;
         }
         case 3:
         {
+            cout << "The code is 8 characters long!" << endl;
             mode.code = new char[8];
+            for(int i = 0; i < 8; i++)
+                mode.code[i] = color[rand()%8];
+            break;
         }
-        default:
-            cout << "Invalid input. Program Terminating.";
+        default: 
+        {
+            cout << "Invalid input. Enter a valid difficulty." << endl;
+            cin >> inN;
+        }
+    }
+    }while(inN < 0 || inN > 3);
+    return mode;
+}
+
+char* guess(char* code)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        cout << "Attempt " << i+1 << endl;
+        cout << "Characters: R, O, Y, G, B, I, V, W" << endl;
+        cout << "Enter Your Characters(no space): " << endl;
+        
     }
 }
