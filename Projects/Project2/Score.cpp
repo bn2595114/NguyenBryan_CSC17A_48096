@@ -21,8 +21,8 @@ void Score::out()
     cout << "Name: " << name << endl;
     cout << "Wins: " << wins << endl;
     cout << "Losses: " << losses << endl;
-    cout << "Average Turns Guessed: " << avg << endl;
-    cout << "Games Played: " << games << endl;
+    cout << "Win Lose Average: " << avg << endl;
+    cout << "Games Played: " << games << endl << endl;
     
 }
 

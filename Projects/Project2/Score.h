@@ -22,19 +22,25 @@ private:
     int games;
 public:
     Score(string, int, int, float, int);
-    string getName()
+    string getName() const
     {return name;}
     void setWin(int w)
     {wins = w;}
     void setLose(int l)
     {losses = l;}
     void setAvg(int w, int l)
-    {avg = static_cast<float>(w/l);}
-    void setGame(int g)
-    {
-        games = g;
+    {   
+        if(l == 0 && w>l)
+            avg = 1;
+        avg = static_cast<float>(w/l);
     }
+    void setGame(int g)
+    {games = g;}
     void out();
+    int getWin() const
+    {return wins;}
+    int getLose() const
+    {return losses;}
     Score operator++(int); // for wins
     Score operator--(int); // for losses
 };
