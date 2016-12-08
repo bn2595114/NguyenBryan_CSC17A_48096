@@ -21,24 +21,24 @@ string getName();
 void instr();
 void writex(Score&, ofstream&);
 void readx(Score&, ifstream&);
-Pattern diff(Pattern&);
+Pattern diff(Pattern&, Points&);
 int menu();
-void guess(const Pattern&, Score&, int);
+void guess(const Pattern&, Score&, int, Points&);
 
 int main(int argc, char** argv) {
-
+    
     srand(static_cast<unsigned int>(time(0)));
     ifstream infile;
     ofstream outfile;
     string name;
-    int win = 0, lose = 0, game = 0, slct;
+    int win = 0, lose = 0, game = 0, slct, points = 0;
     float avg = 0;
     char resp;
-    
+    Points pnt;
     instr();
     name = getName();
-    Score player(name, win, lose, avg, game);
-    
+    Score player(name, win, lose, avg, game, points);
+    Rank rank;
     try{
     readx(player, infile);
     }
@@ -52,13 +52,20 @@ int main(int argc, char** argv) {
     do{
         readx(player, infile);
         slct = menu();
+        player.setPoints(pnt.getPoints());
         if(slct == 1)
-        player.out();
+        {
+            player.setAvg(player.getWin(), player.getLose());
+            player.out();
+            rank.setRank(player.getAvg());
+            cout << "Rank: " << rank.getRank() << endl;
+        }
         cout << "Entering the game..." << endl;
-        code = diff(code);
+        code = diff(code, pnt);
         cin.ignore();
         cout << code.code;
-        guess(code, player, 0);
+        guess(code, player, 0, pnt);
+        
         writex(player, outfile);
         cout << "Play again? y for YES, n for NO" << endl;
         cin >> resp;
@@ -115,13 +122,14 @@ void instr()
 
 
 
-Pattern diff(Pattern& mode)
+Pattern diff(Pattern& mode, Points& p)
 {
     int inN;
     cout << "Please enter the number of the difficulty. " << endl;
     cout << "1) Easy" << endl;
     cout << "2) Medium" << endl;
     cout << "3) Hard" << endl;
+    cout << "4) Custom Mode" << endl;
     cin >> inN;
     char color[8] = {'R', 'O', 'Y', 'G', 'B', 'I', 'V', 'W'};
     do{
@@ -129,6 +137,8 @@ Pattern diff(Pattern& mode)
     {
         case 1:
         {
+            cout << "You get 1 point for playing easy mode!" << endl;
+            p.setPoints(p.getPoints()+1);
             cout << "The code is 4 characters long!" << endl;
             mode.code = new char[5]; // hold the \0
             for(int i = 0; i < 4; i++)
@@ -138,6 +148,8 @@ Pattern diff(Pattern& mode)
         }
         case 2:
         {
+            cout << "You get 2 points for playing easy mode!" << endl;
+            p.setPoints(p.getPoints()+2);
             cout << "The code is 5 characters long!" << endl;
             mode.code = new char[6];
             for(int i = 0; i < 5; i++)
@@ -147,11 +159,25 @@ Pattern diff(Pattern& mode)
         }
         case 3:
         {
+            cout << "You get 3 point for playing easy mode!" << endl;
+            p.setPoints(p.getPoints()+3);
             cout << "The code is 6 characters long!" << endl;
             mode.code = new char[7];
             for(int i = 0; i < 6; i++)
                 mode.code[i] = color[rand()%8];
             mode.code[6] = '\0';
+            break;
+        }
+        case 4:
+        {
+            int lng;
+            cout << "You get to choose this round's mechanics!" << endl;
+            cout << "How long do you want that character string to be?" << endl;
+            cin >> lng;
+            mode.code = new char[lng];
+            for(int i = 0; i < lng; i++)
+                mode.code[i] = color[rand()%8];
+            mode.code[lng] = '\0';
             break;
         }
         default: 
@@ -160,21 +186,32 @@ Pattern diff(Pattern& mode)
             cin >> inN;
         }
     }
-    }while(inN < 0 || inN > 3);
+    }while(inN < 0 || inN > 4);
     
     return mode;
 }
 
-void guess(const Pattern& code, Score& player, int count)
+void guess(const Pattern& code, Score& player, int count, Points& p)
 {
+    char resp;
     char* guess = new char[strlen(code.code)];
     Guess g;
+    int trial = 10;
+    if((strlen(code.code) < 4) || (strlen(code.code) > 6))
+    {
+        cout << "How many guesses would you like to have?" << endl;
+        cin >> trial;
+    }
     cout << "Characters: R, O, Y, G, B, I, V, W" << endl;
-    for(int i = 0; i < 10; i++)
+    cout << "You have " << trial << "attempts ";
+    cout << "to guess your " << strlen(code.code) << "character long ";
+    cout << "code" << endl;
+    for(int i = 0; i < trial; i++)
     {
         g.setMatch(0);
         cout << "Attempt " << i+1 << endl;
         cout << "Enter Your Characters(no space): " << endl;
+        
         cin >> guess;
         while(strlen(guess) > strlen(code.code))
         {
@@ -227,13 +264,29 @@ void guess(const Pattern& code, Score& player, int count)
         {
             cout << "Congratulations! You win!" << endl;
             player++;
-            delete[] guess;
+            
             return;
+        }
+        if(i == trial-1)
+        {
+            cout << "You ran out of tries! Would you like to use ";
+            cout << "1 point for an additional attempt? y for YES and anything ";
+            cout << "else for NO" << endl;
+            cout << "Current points: " << p.getPoints() << endl;
+            cin >> resp;
+            if(p.getPoints() == 0)
+                cout << "You have no more points!" << endl;
+            if(tolower(resp) == 'y' && p.getPoints() > 0)
+            {
+                ++trial;
+                p.loseP();
+                cout << "You used up a point!" << endl;
+                cout << "You now have " << p.getPoints() << "points!" << endl; 
+            }
         }
     }
     cout << "You lose!" << endl;
         player--;
-        delete[] guess;
 }
 
 int menu()

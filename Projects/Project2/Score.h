@@ -14,14 +14,16 @@ using namespace std;
 
 class Score
 {
-private:
+protected:
     string name;
     int wins;
     int losses;
     float avg;
     int games;
+    int point;
 public:
-    Score(string, int, int, float, int);
+    Score();
+    Score(string, int, int, float, int, int);
     string getName() const
     {return name;}
     void setWin(int w)
@@ -30,10 +32,12 @@ public:
     {losses = l;}
     void setAvg(int w, int l)
     {   
-        if(l == 0 && w>l)
-            avg = 1;
-        avg = static_cast<float>(w/l);
+        if(l == 0 && w>0) avg = 999999;
+        else if(l == 0 && w == 0) avg = 0;
+        else avg = static_cast<float>(w)/l;
     }
+    float getAvg()
+    {return avg;}
     void setGame(int g)
     {games = g;}
     void out();
@@ -41,8 +45,39 @@ public:
     {return wins;}
     int getLose() const
     {return losses;}
+    void setPoints(int p)
+    {point = p;}
+    virtual int getPoints() const    // VIRTUAL
+    {return point;}
     Score operator++(int); // for wins
     Score operator--(int); // for losses
+};
+
+class Rank : public Score
+{
+private:
+    string rank;
+public:
+    Rank()
+    {rank = " ";}
+    void setRank(float);
+    string getRank() const
+    {return rank;}
+};
+
+class Points : public Score
+{
+private:
+    int another;    // lose a point
+public:
+    Points() : Score()
+    {point = 0;}
+    Points(int p) : Score()
+    {point = p;}
+    void loseP()
+    {point -= 1;}
+    int getPoints() const
+    {return point;}
 };
 
 #endif	/* BINARYFILE_H */
