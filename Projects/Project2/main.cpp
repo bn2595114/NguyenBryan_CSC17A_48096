@@ -16,12 +16,13 @@ using namespace std;
 #include "Score.h"
 #include "Pattern.h"
 #include "InGame.h"
+#include "Cheater.h"
 
 string getName();
 void instr();
 void writex(Score&, ofstream&);
 void readx(Score&, ifstream&);
-Pattern diff(Pattern&, Points&);
+Pattern diff(Pattern&, Points&, Hacker&);
 int menu();
 void guess(const Pattern&, Score&, int, Points&);
 
@@ -35,10 +36,13 @@ int main(int argc, char** argv) {
     float avg = 0;
     char resp;
     Points pnt;
-    instr();
     name = getName();
     Score player(name, win, lose, avg, game, points);
     Rank rank;
+    instr();
+    Hacker ch;
+    ch.inf();
+    
     try{
     readx(player, infile);
     }
@@ -52,7 +56,6 @@ int main(int argc, char** argv) {
     do{
         readx(player, infile);
         slct = menu();
-        player.setPoints(pnt.getPoints());
         if(slct == 1)
         {
             player.setAvg(player.getWin(), player.getLose());
@@ -61,11 +64,11 @@ int main(int argc, char** argv) {
             cout << "Rank: " << rank.getRank() << endl;
         }
         cout << "Entering the game..." << endl;
-        code = diff(code, pnt);
+        code = diff(code, pnt, ch);
         cin.ignore();
         cout << code.code;
         guess(code, player, 0, pnt);
-        
+        player.setPoints(pnt.getPoints());
         writex(player, outfile);
         cout << "Play again? y for YES, n for NO" << endl;
         cin >> resp;
@@ -122,7 +125,7 @@ void instr()
 
 
 
-Pattern diff(Pattern& mode, Points& p)
+Pattern diff(Pattern& mode, Points& p, Hacker& h)
 {
     int inN;
     cout << "Please enter the number of the difficulty. " << endl;
@@ -130,6 +133,7 @@ Pattern diff(Pattern& mode, Points& p)
     cout << "2) Medium" << endl;
     cout << "3) Hard" << endl;
     cout << "4) Custom Mode" << endl;
+    cout << "5) Cheating Mode" << endl;
     cin >> inN;
     char color[8] = {'R', 'O', 'Y', 'G', 'B', 'I', 'V', 'W'};
     do{
@@ -180,13 +184,28 @@ Pattern diff(Pattern& mode, Points& p)
             mode.code[lng] = '\0';
             break;
         }
+        case 5:
+        {
+            int lng;
+            cout << "You chose the easiest mode! You have unlimited points" << endl;
+            cout << "and are told at which position the characters " << endl;
+            cout << "you guessed right are." << endl;
+            p.setPoints(h.getIn());
+            cout << "How long do you want your cstring to be?" << endl;
+            cin >> lng;
+            mode.code = new char[lng];
+            for(int i = 0; i < lng; i++)
+                mode.code[i] = color[rand()%8];
+            mode.code[lng] = '\0';
+            break;
+        }
         default: 
         {
             cout << "Invalid input. Enter a valid difficulty." << endl;
             cin >> inN;
         }
     }
-    }while(inN < 0 || inN > 4);
+    }while(inN < 0 || inN > 5);
     
     return mode;
 }
@@ -203,8 +222,8 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
         cin >> trial;
     }
     cout << "Characters: R, O, Y, G, B, I, V, W" << endl;
-    cout << "You have " << trial << "attempts ";
-    cout << "to guess your " << strlen(code.code) << "character long ";
+    cout << "You have " << trial << " attempts ";
+    cout << "to guess your " << strlen(code.code) << " character long ";
     cout << "code" << endl;
     for(int i = 0; i < trial; i++)
     {
@@ -231,11 +250,25 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
         }
         g.setGuess(guess);
         count = 0;
+        if(p.getPoints() > 9000)
+        {
+            cout << "The characters that are correct are in following ";
+            cout << "indexes: ";
+        }
+        
         for(int j = 0; j < strlen(code.code); j++ )
         {
             if(code.code[j] == g.getGuess()[j])
+            {
                 ++count;
+                if(p.getPoints() > 9000)
+                    cout << j << " ";
+            }
         }
+        if(p.getPoints() > 9000)
+            if(count == 0)
+                cout << "None" << endl;
+        cout << endl;
         g.setMatch(count);
         
         cout << "There are " << g.getMatch() << " characters ";
@@ -264,7 +297,6 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
         {
             cout << "Congratulations! You win!" << endl;
             player++;
-            
             return;
         }
         if(i == trial-1)
