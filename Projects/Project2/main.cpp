@@ -95,7 +95,6 @@ int main(int argc, char** argv) {
         cout << "Entering the game..." << endl;
         code = diff(code, pnt, ch);
         cin.ignore();
-        cout << code.code;
         guess(code, player, 0, pnt);
         player.setPoints(pnt.getPoints());
         writex(player, outfile);
