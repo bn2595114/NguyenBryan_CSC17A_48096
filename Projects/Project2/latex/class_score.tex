@@ -1,0 +1,296 @@
+\hypertarget{class_score}{}\section{Score Class Reference}
+\label{class_score}\index{Score@{Score}}
+
+
+{\ttfamily \#include $<$Score.\+h$>$}
+
+Inheritance diagram for Score\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_score}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_score_a039c99843551e5e4b512ecee99e46617}{Score} ()
+\item 
+\hyperlink{class_score_ae5367b41f700069f9e2ce9497e66426f}{Score} (string, int, int, float, int, int)
+\item 
+string \hyperlink{class_score_a0d02204131d650c52439fea0ea638720}{get\+Name} () const
+\item 
+void \hyperlink{class_score_a7960fbb8ef5c64918e56be6e256d5865}{set\+Win} (int w)
+\item 
+void \hyperlink{class_score_a70591f02bd619c64b09d1925a6a62f16}{set\+Lose} (int l)
+\item 
+void \hyperlink{class_score_ac075ef8fa25c2c5d63137dc44162d000}{set\+Avg} (int w, int l)
+\item 
+float \hyperlink{class_score_a4384da2fcbec46a731bca24a883cfed0}{get\+Avg} ()
+\item 
+void \hyperlink{class_score_a43f2e628a61dd5b802434e87cfd1ece5}{set\+Game} (int g)
+\item 
+void \hyperlink{class_score_a125441f8712f915c509ad687433f3219}{out} ()
+\item 
+int \hyperlink{class_score_a73db6344bb2a93f4ab29b9b2a5c13bd1}{get\+Win} () const
+\item 
+int \hyperlink{class_score_acfb7bf79eed840c286be8f2e05dbcc08}{get\+Lose} () const
+\item 
+void \hyperlink{class_score_a8d8e4762df39c231a828a26e759695e2}{set\+Points} (int p)
+\item 
+virtual int \hyperlink{class_score_a62f662eefb7584c4b039de697cd696e2}{get\+Points} () const
+\item 
+\hyperlink{class_score}{Score} \hyperlink{class_score_a9c8f64c49d6b45e12a8dd7b69cc190e0}{operator++} (int)
+\item 
+\hyperlink{class_score}{Score} \hyperlink{class_score_a03396e0deb4f20bcef0e815cf3a38971}{operator-\/-\/} (int)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{class_score_a5344ecc1bc167a6fd99aec0fe6d04a60}{name}
+\item 
+int \hyperlink{class_score_a5bdcbfa7299aecece44b67a8150efc1d}{wins}
+\item 
+int \hyperlink{class_score_a571dfba97776842fd2558a77992cfe22}{losses}
+\item 
+float \hyperlink{class_score_a64e012df968fcf3367cb6ecf02ed62a3}{avg}
+\item 
+int \hyperlink{class_score_a9076da395b3860d36f2a0e0e9c618b49}{games}
+\item 
+int \hyperlink{class_score_ab43e949a772acc77bb555fb3d7ccbc65}{point}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 15 of file Score.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_score_a039c99843551e5e4b512ecee99e46617}{}\label{class_score_a039c99843551e5e4b512ecee99e46617} 
+\index{Score@{Score}!Score@{Score}}
+\index{Score@{Score}!Score@{Score}}
+\subsubsection{\texorpdfstring{Score()}{Score()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Score\+::\+Score (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 9 of file Score.\+cpp.
+
+\hypertarget{class_score_ae5367b41f700069f9e2ce9497e66426f}{}\label{class_score_ae5367b41f700069f9e2ce9497e66426f} 
+\index{Score@{Score}!Score@{Score}}
+\index{Score@{Score}!Score@{Score}}
+\subsubsection{\texorpdfstring{Score()}{Score()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Score\+::\+Score (\begin{DoxyParamCaption}\item[{string}]{n,  }\item[{int}]{w,  }\item[{int}]{l,  }\item[{float}]{a,  }\item[{int}]{g,  }\item[{int}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line 19 of file Score.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_score_a4384da2fcbec46a731bca24a883cfed0}{}\label{class_score_a4384da2fcbec46a731bca24a883cfed0} 
+\index{Score@{Score}!get\+Avg@{get\+Avg}}
+\index{get\+Avg@{get\+Avg}!Score@{Score}}
+\subsubsection{\texorpdfstring{get\+Avg()}{getAvg()}}
+{\footnotesize\ttfamily float Score\+::get\+Avg (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 39 of file Score.\+h.
+
+\hypertarget{class_score_acfb7bf79eed840c286be8f2e05dbcc08}{}\label{class_score_acfb7bf79eed840c286be8f2e05dbcc08} 
+\index{Score@{Score}!get\+Lose@{get\+Lose}}
+\index{get\+Lose@{get\+Lose}!Score@{Score}}
+\subsubsection{\texorpdfstring{get\+Lose()}{getLose()}}
+{\footnotesize\ttfamily int Score\+::get\+Lose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 46 of file Score.\+h.
+
+\hypertarget{class_score_a0d02204131d650c52439fea0ea638720}{}\label{class_score_a0d02204131d650c52439fea0ea638720} 
+\index{Score@{Score}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Score@{Score}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily string Score\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 27 of file Score.\+h.
+
+\hypertarget{class_score_a62f662eefb7584c4b039de697cd696e2}{}\label{class_score_a62f662eefb7584c4b039de697cd696e2} 
+\index{Score@{Score}!get\+Points@{get\+Points}}
+\index{get\+Points@{get\+Points}!Score@{Score}}
+\subsubsection{\texorpdfstring{get\+Points()}{getPoints()}}
+{\footnotesize\ttfamily virtual int Score\+::get\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{class_points_a0bcaad8a1ad4a694fb83200eec97c9ce}{Points}.
+
+
+
+Definition at line 50 of file Score.\+h.
+
+\hypertarget{class_score_a73db6344bb2a93f4ab29b9b2a5c13bd1}{}\label{class_score_a73db6344bb2a93f4ab29b9b2a5c13bd1} 
+\index{Score@{Score}!get\+Win@{get\+Win}}
+\index{get\+Win@{get\+Win}!Score@{Score}}
+\subsubsection{\texorpdfstring{get\+Win()}{getWin()}}
+{\footnotesize\ttfamily int Score\+::get\+Win (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 44 of file Score.\+h.
+
+\hypertarget{class_score_a9c8f64c49d6b45e12a8dd7b69cc190e0}{}\label{class_score_a9c8f64c49d6b45e12a8dd7b69cc190e0} 
+\index{Score@{Score}!operator++@{operator++}}
+\index{operator++@{operator++}!Score@{Score}}
+\subsubsection{\texorpdfstring{operator++()}{operator++()}}
+{\footnotesize\ttfamily \hyperlink{class_score}{Score} Score\+::operator++ (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 42 of file Score.\+cpp.
+
+\hypertarget{class_score_a03396e0deb4f20bcef0e815cf3a38971}{}\label{class_score_a03396e0deb4f20bcef0e815cf3a38971} 
+\index{Score@{Score}!operator-\/-\/@{operator-\/-\/}}
+\index{operator-\/-\/@{operator-\/-\/}!Score@{Score}}
+\subsubsection{\texorpdfstring{operator-\/-\/()}{operator--()}}
+{\footnotesize\ttfamily \hyperlink{class_score}{Score} Score\+::operator-\/-\/ (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 50 of file Score.\+cpp.
+
+\hypertarget{class_score_a125441f8712f915c509ad687433f3219}{}\label{class_score_a125441f8712f915c509ad687433f3219} 
+\index{Score@{Score}!out@{out}}
+\index{out@{out}!Score@{Score}}
+\subsubsection{\texorpdfstring{out()}{out()}}
+{\footnotesize\ttfamily void Score\+::out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 30 of file Score.\+cpp.
+
+\hypertarget{class_score_ac075ef8fa25c2c5d63137dc44162d000}{}\label{class_score_ac075ef8fa25c2c5d63137dc44162d000} 
+\index{Score@{Score}!set\+Avg@{set\+Avg}}
+\index{set\+Avg@{set\+Avg}!Score@{Score}}
+\subsubsection{\texorpdfstring{set\+Avg()}{setAvg()}}
+{\footnotesize\ttfamily void Score\+::set\+Avg (\begin{DoxyParamCaption}\item[{int}]{w,  }\item[{int}]{l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 33 of file Score.\+h.
+
+\hypertarget{class_score_a43f2e628a61dd5b802434e87cfd1ece5}{}\label{class_score_a43f2e628a61dd5b802434e87cfd1ece5} 
+\index{Score@{Score}!set\+Game@{set\+Game}}
+\index{set\+Game@{set\+Game}!Score@{Score}}
+\subsubsection{\texorpdfstring{set\+Game()}{setGame()}}
+{\footnotesize\ttfamily void Score\+::set\+Game (\begin{DoxyParamCaption}\item[{int}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 41 of file Score.\+h.
+
+\hypertarget{class_score_a70591f02bd619c64b09d1925a6a62f16}{}\label{class_score_a70591f02bd619c64b09d1925a6a62f16} 
+\index{Score@{Score}!set\+Lose@{set\+Lose}}
+\index{set\+Lose@{set\+Lose}!Score@{Score}}
+\subsubsection{\texorpdfstring{set\+Lose()}{setLose()}}
+{\footnotesize\ttfamily void Score\+::set\+Lose (\begin{DoxyParamCaption}\item[{int}]{l }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 31 of file Score.\+h.
+
+\hypertarget{class_score_a8d8e4762df39c231a828a26e759695e2}{}\label{class_score_a8d8e4762df39c231a828a26e759695e2} 
+\index{Score@{Score}!set\+Points@{set\+Points}}
+\index{set\+Points@{set\+Points}!Score@{Score}}
+\subsubsection{\texorpdfstring{set\+Points()}{setPoints()}}
+{\footnotesize\ttfamily void Score\+::set\+Points (\begin{DoxyParamCaption}\item[{int}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 48 of file Score.\+h.
+
+\hypertarget{class_score_a7960fbb8ef5c64918e56be6e256d5865}{}\label{class_score_a7960fbb8ef5c64918e56be6e256d5865} 
+\index{Score@{Score}!set\+Win@{set\+Win}}
+\index{set\+Win@{set\+Win}!Score@{Score}}
+\subsubsection{\texorpdfstring{set\+Win()}{setWin()}}
+{\footnotesize\ttfamily void Score\+::set\+Win (\begin{DoxyParamCaption}\item[{int}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 29 of file Score.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_score_a64e012df968fcf3367cb6ecf02ed62a3}{}\label{class_score_a64e012df968fcf3367cb6ecf02ed62a3} 
+\index{Score@{Score}!avg@{avg}}
+\index{avg@{avg}!Score@{Score}}
+\subsubsection{\texorpdfstring{avg}{avg}}
+{\footnotesize\ttfamily float Score\+::avg\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 21 of file Score.\+h.
+
+\hypertarget{class_score_a9076da395b3860d36f2a0e0e9c618b49}{}\label{class_score_a9076da395b3860d36f2a0e0e9c618b49} 
+\index{Score@{Score}!games@{games}}
+\index{games@{games}!Score@{Score}}
+\subsubsection{\texorpdfstring{games}{games}}
+{\footnotesize\ttfamily int Score\+::games\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 22 of file Score.\+h.
+
+\hypertarget{class_score_a571dfba97776842fd2558a77992cfe22}{}\label{class_score_a571dfba97776842fd2558a77992cfe22} 
+\index{Score@{Score}!losses@{losses}}
+\index{losses@{losses}!Score@{Score}}
+\subsubsection{\texorpdfstring{losses}{losses}}
+{\footnotesize\ttfamily int Score\+::losses\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 20 of file Score.\+h.
+
+\hypertarget{class_score_a5344ecc1bc167a6fd99aec0fe6d04a60}{}\label{class_score_a5344ecc1bc167a6fd99aec0fe6d04a60} 
+\index{Score@{Score}!name@{name}}
+\index{name@{name}!Score@{Score}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string Score\+::name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 18 of file Score.\+h.
+
+\hypertarget{class_score_ab43e949a772acc77bb555fb3d7ccbc65}{}\label{class_score_ab43e949a772acc77bb555fb3d7ccbc65} 
+\index{Score@{Score}!point@{point}}
+\index{point@{point}!Score@{Score}}
+\subsubsection{\texorpdfstring{point}{point}}
+{\footnotesize\ttfamily int Score\+::point\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 23 of file Score.\+h.
+
+\hypertarget{class_score_a5bdcbfa7299aecece44b67a8150efc1d}{}\label{class_score_a5bdcbfa7299aecece44b67a8150efc1d} 
+\index{Score@{Score}!wins@{wins}}
+\index{wins@{wins}!Score@{Score}}
+\subsubsection{\texorpdfstring{wins}{wins}}
+{\footnotesize\ttfamily int Score\+::wins\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 19 of file Score.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_score_8h}{Score.\+h}\item 
+\hyperlink{_score_8cpp}{Score.\+cpp}\end{DoxyCompactItemize}

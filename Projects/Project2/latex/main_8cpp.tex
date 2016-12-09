@@ -1,0 +1,164 @@
+\hypertarget{main_8cpp}{}\section{main.\+cpp File Reference}
+\label{main_8cpp}\index{main.\+cpp@{main.\+cpp}}
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}Score.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Pattern.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}In\+Game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Cheater.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Bonus\+Template.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Count.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{main_8cpp_a11335e13e50af74108bf926dc1340b4b}{get\+Name} ()
+\item 
+void \hyperlink{main_8cpp_abba477db4dab7f217fdcf837b6879fd7}{instr} ()
+\item 
+void \hyperlink{main_8cpp_a46bb56f04eb6a926f21f5ec63c4819a6}{writex} (\hyperlink{class_score}{Score} \&, ofstream \&)
+\item 
+void \hyperlink{main_8cpp_a8e3c27556a4de2c0ba334f2871474b38}{readx} (\hyperlink{class_score}{Score} \&, ifstream \&)
+\item 
+void \hyperlink{main_8cpp_aa42d3b94ddff3914feb4db6f5e201507}{total} (\hyperlink{class_total_g}{TotalG} \&, ofstream \&)
+\item 
+void \hyperlink{main_8cpp_a4acbf64fb450fef86871366214e74461}{total} (\hyperlink{class_total_g}{TotalG} \&, ifstream \&)
+\item 
+\hyperlink{struct_pattern}{Pattern} \hyperlink{main_8cpp_adfad00c5c23a4688e5a6d5ff31ea7395}{diff} (\hyperlink{struct_pattern}{Pattern} \&, \hyperlink{class_points}{Points} \&, \hyperlink{class_hacker}{Hacker} \&)
+\item 
+int \hyperlink{main_8cpp_ae83fcdbeb2b6757fc741ae953b633ee1}{menu} ()
+\item 
+void \hyperlink{main_8cpp_a230ef0a7576039a28c930364239dab98}{guess} (const \hyperlink{struct_pattern}{Pattern} \&, \hyperlink{class_score}{Score} \&, int, \hyperlink{class_points}{Points} \&)
+\item 
+void \hyperlink{main_8cpp_afd60e8849754bff8d78d8770648dbe86}{bonus} ()
+\item 
+int \hyperlink{main_8cpp_a64f1ec98a4bca574468dbeb1137af57c}{item} ()
+\item 
+int \hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8cpp_afd60e8849754bff8d78d8770648dbe86}{}\label{main_8cpp_afd60e8849754bff8d78d8770648dbe86} 
+\index{main.\+cpp@{main.\+cpp}!bonus@{bonus}}
+\index{bonus@{bonus}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{bonus()}{bonus()}}
+{\footnotesize\ttfamily void bonus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 512 of file main.\+cpp.
+
+\hypertarget{main_8cpp_adfad00c5c23a4688e5a6d5ff31ea7395}{}\label{main_8cpp_adfad00c5c23a4688e5a6d5ff31ea7395} 
+\index{main.\+cpp@{main.\+cpp}!diff@{diff}}
+\index{diff@{diff}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{diff()}{diff()}}
+{\footnotesize\ttfamily \hyperlink{struct_pattern}{Pattern} diff (\begin{DoxyParamCaption}\item[{\hyperlink{struct_pattern}{Pattern} \&}]{mode,  }\item[{\hyperlink{class_points}{Points} \&}]{p,  }\item[{\hyperlink{class_hacker}{Hacker} \&}]{h }\end{DoxyParamCaption})}
+
+
+
+Definition at line 180 of file main.\+cpp.
+
+\hypertarget{main_8cpp_a11335e13e50af74108bf926dc1340b4b}{}\label{main_8cpp_a11335e13e50af74108bf926dc1340b4b} 
+\index{main.\+cpp@{main.\+cpp}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily string get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 109 of file main.\+cpp.
+
+\hypertarget{main_8cpp_a230ef0a7576039a28c930364239dab98}{}\label{main_8cpp_a230ef0a7576039a28c930364239dab98} 
+\index{main.\+cpp@{main.\+cpp}!guess@{guess}}
+\index{guess@{guess}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{guess()}{guess()}}
+{\footnotesize\ttfamily void guess (\begin{DoxyParamCaption}\item[{const \hyperlink{struct_pattern}{Pattern} \&}]{code,  }\item[{\hyperlink{class_score}{Score} \&}]{player,  }\item[{int}]{count,  }\item[{\hyperlink{class_points}{Points} \&}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line 269 of file main.\+cpp.
+
+\hypertarget{main_8cpp_abba477db4dab7f217fdcf837b6879fd7}{}\label{main_8cpp_abba477db4dab7f217fdcf837b6879fd7} 
+\index{main.\+cpp@{main.\+cpp}!instr@{instr}}
+\index{instr@{instr}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{instr()}{instr()}}
+{\footnotesize\ttfamily void instr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 166 of file main.\+cpp.
+
+\hypertarget{main_8cpp_a64f1ec98a4bca574468dbeb1137af57c}{}\label{main_8cpp_a64f1ec98a4bca574468dbeb1137af57c} 
+\index{main.\+cpp@{main.\+cpp}!item@{item}}
+\index{item@{item}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{item()}{item()}}
+{\footnotesize\ttfamily int item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 520 of file main.\+cpp.
+
+\hypertarget{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+\index{main.\+cpp@{main.\+cpp}!main@{main}}
+\index{main@{main}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line 34 of file main.\+cpp.
+
+\hypertarget{main_8cpp_ae83fcdbeb2b6757fc741ae953b633ee1}{}\label{main_8cpp_ae83fcdbeb2b6757fc741ae953b633ee1} 
+\index{main.\+cpp@{main.\+cpp}!menu@{menu}}
+\index{menu@{menu}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{menu()}{menu()}}
+{\footnotesize\ttfamily int menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 496 of file main.\+cpp.
+
+\hypertarget{main_8cpp_a8e3c27556a4de2c0ba334f2871474b38}{}\label{main_8cpp_a8e3c27556a4de2c0ba334f2871474b38} 
+\index{main.\+cpp@{main.\+cpp}!readx@{readx}}
+\index{readx@{readx}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{readx()}{readx()}}
+{\footnotesize\ttfamily void readx (\begin{DoxyParamCaption}\item[{\hyperlink{class_score}{Score} \&}]{play,  }\item[{ifstream \&}]{infile }\end{DoxyParamCaption})}
+
+
+
+Definition at line 130 of file main.\+cpp.
+
+\hypertarget{main_8cpp_aa42d3b94ddff3914feb4db6f5e201507}{}\label{main_8cpp_aa42d3b94ddff3914feb4db6f5e201507} 
+\index{main.\+cpp@{main.\+cpp}!total@{total}}
+\index{total@{total}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{total()}{total()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void total (\begin{DoxyParamCaption}\item[{\hyperlink{class_total_g}{TotalG} \&}]{t,  }\item[{ofstream \&}]{outfile }\end{DoxyParamCaption})}
+
+
+
+Definition at line 142 of file main.\+cpp.
+
+\hypertarget{main_8cpp_a4acbf64fb450fef86871366214e74461}{}\label{main_8cpp_a4acbf64fb450fef86871366214e74461} 
+\index{main.\+cpp@{main.\+cpp}!total@{total}}
+\index{total@{total}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{total()}{total()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void total (\begin{DoxyParamCaption}\item[{\hyperlink{class_total_g}{TotalG} \&}]{t,  }\item[{ifstream \&}]{infile }\end{DoxyParamCaption})}
+
+
+
+Definition at line 154 of file main.\+cpp.
+
+\hypertarget{main_8cpp_a46bb56f04eb6a926f21f5ec63c4819a6}{}\label{main_8cpp_a46bb56f04eb6a926f21f5ec63c4819a6} 
+\index{main.\+cpp@{main.\+cpp}!writex@{writex}}
+\index{writex@{writex}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{writex()}{writex()}}
+{\footnotesize\ttfamily void writex (\begin{DoxyParamCaption}\item[{\hyperlink{class_score}{Score} \&}]{play,  }\item[{ofstream \&}]{outfile }\end{DoxyParamCaption})}
+
+
+
+Definition at line 118 of file main.\+cpp.
+
