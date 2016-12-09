@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>BonusTemplate.h</itemPath>
       <itemPath>Cheater.h</itemPath>
+      <itemPath>Count.h</itemPath>
       <itemPath>InGame.h</itemPath>
       <itemPath>Pattern.h</itemPath>
       <itemPath>Score.h</itemPath>
@@ -19,6 +20,7 @@
                    projectFiles="true">
       <itemPath>Score.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>playerCount.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -46,6 +48,8 @@
       </item>
       <item path="Cheater.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Count.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="InGame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Pattern.h" ex="false" tool="3" flavor2="0">
@@ -55,6 +59,8 @@
       <item path="Score.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="playerCount.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -81,6 +87,8 @@
       </item>
       <item path="Cheater.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Count.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="InGame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Pattern.h" ex="false" tool="3" flavor2="0">
@@ -90,6 +98,8 @@
       <item path="Score.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="playerCount.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

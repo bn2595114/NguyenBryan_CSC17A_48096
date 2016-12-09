@@ -78,5 +78,19 @@ public:
     {return point;}
 };
 
+class Store : public Score
+{
+public:
+    Store()
+    {point = 0;}
+    void setPoints(int p)
+    {point = p;}
+    int getP() const
+    {return point;}
+    void buy()
+    {
+        point -= 5;
+    }
+};
 #endif	/* BINARYFILE_H */
 

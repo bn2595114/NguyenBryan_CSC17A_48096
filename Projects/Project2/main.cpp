@@ -11,29 +11,32 @@
 #include <cstring>
 #include <string>
 #include <vector>
-#include <algorithm>
 using namespace std;
 #include "Score.h"
 #include "Pattern.h"
 #include "InGame.h"
 #include "Cheater.h"
 #include "BonusTemplate.h"
+#include "Count.h"
 
 string getName();
 void instr();
 void writex(Score&, ofstream&);
 void readx(Score&, ifstream&);
+void total(TotalG&, ofstream&);
+void total(TotalG&, ifstream&);
 Pattern diff(Pattern&, Points&, Hacker&);
 int menu();
 void guess(const Pattern&, Score&, int, Points&);
 void bonus();
+int item();
 
 int main(int argc, char** argv) {
     
     srand(static_cast<unsigned int>(time(0)));
     ifstream infile;
     ofstream outfile;
-    string name;
+    string name, g;
     int win = 0, lose = 0, game = 0, slct, points = 0;
     float avg = 0;
     char resp;
@@ -45,7 +48,7 @@ int main(int argc, char** argv) {
     Hacker ch;
     ch.inf();
     Pattern code;
-    
+    TotalG user(name);
     try{
     readx(player, infile);
     }
@@ -53,6 +56,14 @@ int main(int argc, char** argv) {
     {
         cout << exception;
         writex(player, outfile);
+    }
+    try{
+        total(user, infile);
+    }
+    catch(string exception)
+    {
+        cout << exception;
+        total(user, outfile);
     }
     
     do{
@@ -64,6 +75,22 @@ int main(int argc, char** argv) {
             player.out();
             rank.setRank(player.getAvg());
             cout << "Rank: " << rank.getRank() << endl;
+        }
+        if(slct == 3)
+        {
+            int sell = 0;
+            Store buy;
+            buy.setPoints(player.getPoints());
+            sell = item();
+            if(sell > 0 && sell < 7 && buy.getPoints() > 4)
+            {
+                buy.buy();
+                cout << "You bought the item!" << endl;
+            }
+            else
+                cout << "You do not have enough points!" << endl;
+            player.setPoints(buy.getPoints());
+            cout << "Points Remaining: " << player.getPoints() << endl;
         }
         cout << "Entering the game..." << endl;
         code = diff(code, pnt, ch);
@@ -94,7 +121,7 @@ void writex(Score& play, ofstream& outfile)
     outfile.open(play.getName().c_str(), ios::out | ios::binary);
     if(!outfile)
     {
-        string exception = "ERROR. Unable to open file";
+        string exception = "ERROR. Unable to open file\n";
         throw exception;
     }
     outfile.write(reinterpret_cast<char*>(&play), sizeof(play));
@@ -106,10 +133,34 @@ void readx(Score& play, ifstream& infile)
     infile.open(play.getName().c_str(), ios::in | ios::binary);
     if(!infile) 
     {
-        string exception = "Unable to find user. Creating File...";
+        string exception = "Unable to find user. Creating File...\n";
         throw exception;
     }
     infile.read(reinterpret_cast<char*>(&play), sizeof(play));
+    infile.close();
+}
+
+void total(TotalG& t, ofstream& outfile)
+{
+    outfile.open("TotalPlayers", ios::out | ios::binary);
+    if(!outfile)
+    {
+        string exception = "ERROR. Unable to open file\n";
+        throw exception;
+    }
+    outfile.write(reinterpret_cast<char*>(&t), sizeof(t));
+    outfile.close();
+}
+
+void total(TotalG& t, ifstream& infile)
+{
+    infile.open("TotalPlayers", ios::in | ios::binary);
+    if(!infile) 
+    {
+        string exception = "Unable to open file. Creating File...\n";
+        throw exception;
+    }
+    infile.read(reinterpret_cast<char*>(&t), sizeof(t));
     infile.close();
 }
 
@@ -155,7 +206,7 @@ Pattern diff(Pattern& mode, Points& p, Hacker& h)
         }
         case 2:
         {
-            cout << "You get 2 points for playing easy mode!" << endl;
+            cout << "You get 2 points for playing medium mode!" << endl;
             bonus();
             p.setPoints(p.getPoints()+2);
             cout << "The code is 5 characters long!" << endl;
@@ -167,7 +218,7 @@ Pattern diff(Pattern& mode, Points& p, Hacker& h)
         }
         case 3:
         {
-            cout << "You get 3 point for playing easy mode!" << endl;
+            cout << "You get 3 point for playing hard mode!" << endl;
             bonus();
             p.setPoints(p.getPoints()+3);
             cout << "The code is 6 characters long!" << endl;
@@ -317,46 +368,46 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
                 if(i == 4)
                 {
                     cout << "You completed the round in 5 turns!" << endl;
-                    cout << "You have received" << times2(3);
+                    cout << "You have received " << times2(3);
                     cout << " bonus points!" << endl;
                     p.setPoints(p.getPoints()+times2(3));
                 }
                 if(i == 3)
                 {
                     cout << "You completed the round in 5 turns!" << endl;
-                    cout << "You have received" << times3(3);
+                    cout << "You have received " << times3(3);
                     cout << " bonus points!" << endl;
                     p.setPoints(p.getPoints()+times3(3));
                 }
                 if(i <= 2)
                 {
                     cout << "You completed the round in 5 turns!" << endl;
-                    cout << "You have received" << times5(3);
+                    cout << "You have received " << times5(3);
                     cout << " bonus points!" << endl;
                     p.setPoints(p.getPoints()+times5(3));
                 }
             }
             
-            if(strlen(code.code) == 4)
+            if(strlen(code.code) == 5)
             {
                 if(i == 5)
                 {
                     cout << "You completed the round in 5 turns!" << endl;
-                    cout << "You have received" << times2(2);
+                    cout << "You have received " << times2(2);
                     cout << " bonus points!" << endl;
                     p.setPoints(p.getPoints()+times2(2));
                 }
                 if(i == 3)
                 {
                     cout << "You completed the round in 5 turns!" << endl;
-                    cout << "You have received" << times3(2);
+                    cout << "You have received " << times3(2);
                     cout << " bonus points!" << endl;
                     p.setPoints(p.getPoints()+times3(2));
                 }
                 if(i <= 2)
                 {
                     cout << "You completed the round in 5 turns!" << endl;
-                    cout << "You have received" << times5(2);
+                    cout << "You have received " << times5(2);
                     cout << " bonus points!" << endl;
                     p.setPoints(p.getPoints()+times5(2));
                 }
@@ -366,21 +417,21 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
                 if(i == 4)
                 {
                     cout << "You completed the round in 5 turns!" << endl;
-                    cout << "You have received" << times2(1);
+                    cout << "You have received " << times2(1);
                     cout << " bonus points!" << endl;
                     p.setPoints(p.getPoints()+times2(1));
                 }
                 if(i == 3)
                 {
                     cout << "You completed the round in 5 turns!" << endl;
-                    cout << "You have received" << times3(1);
+                    cout << "You have received " << times3(1);
                     cout << " bonus points!" << endl;
                     p.setPoints(p.getPoints()+times3(1));
                 }
                 if(i <= 2)
                 {
                     cout << "You completed the round in 5 turns!" << endl;
-                    cout << "You have received" << times5(1);
+                    cout << "You have received " << times5(1);
                     cout << " bonus points!" << endl;
                     p.setPoints(p.getPoints()+times5(1));
                 }
@@ -438,8 +489,9 @@ int menu()
     cout << "Enter a number." << endl;
     cout << "1) View Player Statistics" << endl;
     cout << "2) Continue to Game" << endl;
+    cout << "3) Enter the shop" << endl;
     cin >> r;
-    while(atoi(r)!=1 && atoi(r)!=2)
+    while(atoi(r)!=1 && atoi(r)!=2 && atoi(r)!=3)
     {
         cout << "ERROR. INVALID INPUT. PLEASE ENTER A VALID NUMBER" << endl;
         cin >> r;
@@ -453,4 +505,23 @@ void bonus()
     cout << " receive 2 times bonus points!" << endl;
     cout << "Finishing in 4 rounds, 3 times! And 3 rounds and under,";
     cout << " 5 times!" << endl;
+}
+
+int item()
+{
+    char *r;
+    cout << "Welcome to the shop! Here are our selected items." << endl;
+    cout << "1) Hat     (5 points)" << endl;
+    cout << "2) Gloves  (5 points)" << endl;
+    cout << "3) Hammer  (5 points)" << endl;
+    cout << "4) Shoes   (5 points)" << endl;
+    cout << "5) Pants   (5 points)" << endl;
+    cout << "6) Shirt   (5 points)" << endl;
+    cout << "Please enter the number to purchase and anything else to exit";
+    cout << endl;
+    cin >> r;
+    if(atoi(r) > 0 && atoi(r) < 7)
+        return atoi(r);
+    else
+        return 0;
 }
