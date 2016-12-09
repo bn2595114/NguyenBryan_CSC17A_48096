@@ -67,8 +67,6 @@ public:
 
 class Points : public Score
 {
-private:
-    int another;    // lose a point
 public:
     Points() : Score()
     {point = 0;}

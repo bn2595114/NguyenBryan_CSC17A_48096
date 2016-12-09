@@ -17,6 +17,7 @@ using namespace std;
 #include "Pattern.h"
 #include "InGame.h"
 #include "Cheater.h"
+#include "BonusTemplate.h"
 
 string getName();
 void instr();
@@ -25,6 +26,7 @@ void readx(Score&, ifstream&);
 Pattern diff(Pattern&, Points&, Hacker&);
 int menu();
 void guess(const Pattern&, Score&, int, Points&);
+void bonus();
 
 int main(int argc, char** argv) {
     
@@ -42,6 +44,7 @@ int main(int argc, char** argv) {
     instr();
     Hacker ch;
     ch.inf();
+    Pattern code;
     
     try{
     readx(player, infile);
@@ -51,7 +54,6 @@ int main(int argc, char** argv) {
         cout << exception;
         writex(player, outfile);
     }
-    Pattern code;
     
     do{
         readx(player, infile);
@@ -142,6 +144,7 @@ Pattern diff(Pattern& mode, Points& p, Hacker& h)
         case 1:
         {
             cout << "You get 1 point for playing easy mode!" << endl;
+            bonus();
             p.setPoints(p.getPoints()+1);
             cout << "The code is 4 characters long!" << endl;
             mode.code = new char[5]; // hold the \0
@@ -153,6 +156,7 @@ Pattern diff(Pattern& mode, Points& p, Hacker& h)
         case 2:
         {
             cout << "You get 2 points for playing easy mode!" << endl;
+            bonus();
             p.setPoints(p.getPoints()+2);
             cout << "The code is 5 characters long!" << endl;
             mode.code = new char[6];
@@ -164,6 +168,7 @@ Pattern diff(Pattern& mode, Points& p, Hacker& h)
         case 3:
         {
             cout << "You get 3 point for playing easy mode!" << endl;
+            bonus();
             p.setPoints(p.getPoints()+3);
             cout << "The code is 6 characters long!" << endl;
             mode.code = new char[7];
@@ -176,6 +181,7 @@ Pattern diff(Pattern& mode, Points& p, Hacker& h)
         {
             int lng;
             cout << "You get to choose this round's mechanics!" << endl;
+            cout << "No points will be awarded for this mode" << endl;
             cout << "How long do you want that character string to be?" << endl;
             cin >> lng;
             mode.code = new char[lng];
@@ -214,10 +220,12 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
 {
     char resp;
     char* guess = new char[strlen(code.code)];
+    char color[8] = {'R', 'O', 'Y', 'G', 'B', 'I', 'V', 'W'};
     Guess g;
     int trial = 10;
     if((strlen(code.code) < 4) || (strlen(code.code) > 6))
     {
+        cout << endl;
         cout << "How many guesses would you like to have?" << endl;
         cin >> trial;
     }
@@ -232,6 +240,13 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
         cout << "Enter Your Characters(no space): " << endl;
         
         cin >> guess;
+        for(int j = 0; j < strlen(guess); j++)
+        {
+            for(int k = 0; k < 8; k++)
+            {
+                
+            }
+        }
         while(strlen(guess) > strlen(code.code))
         {
             cout << "Too many characters! Please enter a valid combination.";
@@ -296,6 +311,91 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
         if(strcmp(code.code, g.getGuess()) == 0)
         {
             cout << "Congratulations! You win!" << endl;
+            
+            if(strlen(code.code) == 6)
+            {
+                if(i == 4)
+                {
+                    cout << "You completed the round in 5 turns!" << endl;
+                    cout << "You have received" << times2(3);
+                    cout << " bonus points!" << endl;
+                    p.setPoints(p.getPoints()+times2(3));
+                }
+                if(i == 3)
+                {
+                    cout << "You completed the round in 5 turns!" << endl;
+                    cout << "You have received" << times3(3);
+                    cout << " bonus points!" << endl;
+                    p.setPoints(p.getPoints()+times3(3));
+                }
+                if(i <= 2)
+                {
+                    cout << "You completed the round in 5 turns!" << endl;
+                    cout << "You have received" << times5(3);
+                    cout << " bonus points!" << endl;
+                    p.setPoints(p.getPoints()+times5(3));
+                }
+            }
+            
+            if(strlen(code.code) == 4)
+            {
+                if(i == 5)
+                {
+                    cout << "You completed the round in 5 turns!" << endl;
+                    cout << "You have received" << times2(2);
+                    cout << " bonus points!" << endl;
+                    p.setPoints(p.getPoints()+times2(2));
+                }
+                if(i == 3)
+                {
+                    cout << "You completed the round in 5 turns!" << endl;
+                    cout << "You have received" << times3(2);
+                    cout << " bonus points!" << endl;
+                    p.setPoints(p.getPoints()+times3(2));
+                }
+                if(i <= 2)
+                {
+                    cout << "You completed the round in 5 turns!" << endl;
+                    cout << "You have received" << times5(2);
+                    cout << " bonus points!" << endl;
+                    p.setPoints(p.getPoints()+times5(2));
+                }
+            }
+            if(strlen(code.code) == 4)
+            {
+                if(i == 4)
+                {
+                    cout << "You completed the round in 5 turns!" << endl;
+                    cout << "You have received" << times2(1);
+                    cout << " bonus points!" << endl;
+                    p.setPoints(p.getPoints()+times2(1));
+                }
+                if(i == 3)
+                {
+                    cout << "You completed the round in 5 turns!" << endl;
+                    cout << "You have received" << times3(1);
+                    cout << " bonus points!" << endl;
+                    p.setPoints(p.getPoints()+times3(1));
+                }
+                if(i <= 2)
+                {
+                    cout << "You completed the round in 5 turns!" << endl;
+                    cout << "You have received" << times5(1);
+                    cout << " bonus points!" << endl;
+                    p.setPoints(p.getPoints()+times5(1));
+                }
+            }
+            if(player.getPoints() > 9000)
+        {
+                cout << endl;
+                cout << "You have previously played Cheating Mode. " << endl;
+                cout << "Your stats will now reset" << endl;
+                p.setGame(0);
+                p.setLose(0);
+                p.setWin(0);
+                p.setPoints(0);
+                cout << endl;
+        }
             player++;
             return;
         }
@@ -319,6 +419,17 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
     }
     cout << "You lose!" << endl;
         player--;
+    if(player.getPoints() > 9000)
+        {
+        cout << endl;
+        cout << "You have previously played Cheating Mode. " << endl;
+        cout << "Your stats will now reset" << endl;
+        p.setGame(0);
+        p.setLose(0);
+        p.setWin(0);
+        p.setPoints(0);
+        cout << endl;
+        }
 }
 
 int menu()
@@ -334,4 +445,12 @@ int menu()
         cin >> r;
     }
     return atoi(r);
+}
+
+void bonus()
+{
+    cout << "If you complete this round in 5 rounds, you will";
+    cout << " receive 2 times bonus points!" << endl;
+    cout << "Finishing in 4 rounds, 3 times! And 3 rounds and under,";
+    cout << " 5 times!" << endl;
 }
