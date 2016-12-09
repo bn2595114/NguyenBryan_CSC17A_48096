@@ -290,13 +290,24 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
         cout << "Enter Your Characters(no space): " << endl;
         
         cin >> guess;
+        
+        do{
         for(int j = 0; j < strlen(guess); j++)
         {
+            count = 0;
             for(int k = 0; k < 8; k++)
             {
-                
+                if(toupper(guess[j]) == color[k])
+                    count++;
+            }
+            if(count != 1)
+            {
+                cout << "One or more of your characters are not in the ";
+                cout << "array. Please enter a valid code." << endl;
+                cin >> guess;
             }
         }
+        }while(count != 1);
         while(strlen(guess) > strlen(code.code))
         {
             cout << "Too many characters! Please enter a valid combination.";
