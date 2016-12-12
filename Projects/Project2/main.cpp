@@ -19,7 +19,7 @@ using namespace std;
 #include "BonusTemplate.h"
 #include "Count.h"
 
-string getName();
+char* getName();
 void instr();
 void writex(Score&, ofstream&);
 void readx(Score&, ifstream&);
@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
     srand(static_cast<unsigned int>(time(0)));
     ifstream infile;
     ofstream outfile;
-    string name, g;
+    char* name;
     int win = 0, lose = 0, game = 0, slct, points = 0;
     float avg = 0;
     char resp;
@@ -103,14 +103,15 @@ int main(int argc, char** argv) {
     } while(tolower(resp) == 'y');
     
     delete[] code.code;
+    delete[] name;
     return 0;
 }
 
-string getName()
+char* getName()
 {
-    string name;
+    char* name = new char[50];
     cout << "What is your name?" << endl;
-    cin >> name;
+    cin.getline(name, 50);
     cout << endl;
     return name;
 }
