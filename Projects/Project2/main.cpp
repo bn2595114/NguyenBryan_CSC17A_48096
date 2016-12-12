@@ -283,6 +283,9 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
     cout << "You have " << trial << " attempts ";
     cout << "to guess your " << strlen(code.code) << " character long ";
     cout << "code" << endl;
+    char* temp = new char[5];
+    for(int i = 0; i < strlen(code.code); i++)
+        temp[i] = code.code[i];
     for(int i = 0; i < trial; i++)
     {
         g.setMatch(0);
@@ -350,21 +353,23 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
         cout << "There are " << g.getMatch() << " characters ";
         cout << "that are in the correct position and ";
         count = 0;
-        int mult; // for unwanted bonus count
-        
-        for(int j = 0; j < strlen(code.code); j++) // DOES NOT COMPLETELY WORK
+        int mult = 0; // for unwanted bonus count
+        for(int j = 0; j < strlen(code.code); j++) // DOES NOT COMPLETELY WORK                      AAAA
         {
-            mult = 0;
+            
             for(int k = 0; k < strlen(code.code); k++)
             {
-                if(g.getGuess()[j] == code.code[k])
+                if(g.getGuess()[j] == temp[k])
                 {
                     ++mult;
-                if(mult == 1)
-                    count++;
+                    temp[k] = ' ';
                 }
             }
+            count += mult;
+                mult = 0;
         }
+        for(int j = 0; j < strlen(code.code); j++)
+        temp[j] = code.code[j];
         g.setIn(count);       
         cout << g.getIn() << " correct characters in your guess";
         cout << endl;
@@ -458,6 +463,7 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
                 cout << endl;
         }
             player++;
+            delete[] temp;
             return;
         }
         if(i == trial-1)
@@ -480,6 +486,7 @@ void guess(const Pattern& code, Score& player, int count, Points& p)
     }
     cout << "You lose!" << endl;
         player--;
+        delete[] temp;
     if(player.getPoints() > 9000)
         {
         cout << endl;
